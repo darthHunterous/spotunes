@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import '../../style.css';
 
@@ -15,6 +15,30 @@ import { PlayerIcon } from 'react-player-controls';
 
 
 function App() {
+  const [songData, setSongData] = useState([]);
+  const [playerSongID, setPlayerSongID] = useState(['5nDY2KxY4o4kiBxO1tGDGe']);
+
+  const getSongData = () => {
+    fetch('data.json'
+      , {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      }
+    )
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (myJson) {
+        setSongData(myJson.songs);
+      });
+  }
+
+  useEffect(() => {
+    getSongData()
+  }, [])
+
   return (
     <>
       <Container className="navbar-player p-0" fluid>
@@ -30,7 +54,7 @@ function App() {
             </div>
           </Col>
           <Col className="col-md-4 h-100 p-0">
-            <iframe title="Spotify Embedded Player" src="https://open.spotify.com/embed/track/5nDY2KxY4o4kiBxO1tGDGe " width="100%" height="100%" frameborder="0"
+            <iframe title="Spotify Embedded Player" src={`https://open.spotify.com/embed/track/${playerSongID}`} width="100%" height="100%" frameborder="0"
               allowtransparency="true" allow="encrypted-media" seamless="seamless"></iframe></Col>
           <Col className="col-md-4 h-100 p-0 d-flex justify-content-center align-items-center">
             <Form className="d-flex w-50">
@@ -104,54 +128,16 @@ function App() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Teste</td>
-                  <td>Teste</td>
-                  <td>Teste</td>
-                  <td>Teste</td>
-                  <td>Teste</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Teste</td>
-                  <td>Teste</td>
-                  <td>Teste</td>
-                  <td>Teste</td>
-                  <td>Teste</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Teste</td>
-                  <td>Teste</td>
-                  <td>Teste</td>
-                  <td>Teste</td>
-                  <td>Teste</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>Teste</td>
-                  <td>Teste</td>
-                  <td>Teste</td>
-                  <td>Teste</td>
-                  <td>Teste</td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>Teste</td>
-                  <td>Teste</td>
-                  <td>Teste</td>
-                  <td>Teste</td>
-                  <td>Teste</td>
-                </tr>
-                <tr>
-                  <td>6</td>
-                  <td>Teste</td>
-                  <td>Teste</td>
-                  <td>Teste</td>
-                  <td>Teste</td>
-                  <td>Teste</td>
-                </tr>
+                {songData.map((song) => (
+                  <tr onDoubleClick={() => setPlayerSongID(song.spotifyID)}>
+                    <td>{song.id}</td>
+                    <td>{song.title}</td>
+                    <td>{song.length}</td>
+                    <td>{song.artist}</td>
+                    <td>{song.album}</td>
+                    <td>{song.rating}</td>
+                  </tr>
+                ))}
               </tbody>
             </Table>
           </Col>

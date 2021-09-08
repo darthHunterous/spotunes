@@ -1,0 +1,49 @@
+{
+  "songs": [
+    {
+      "id": 1,
+      "title": "Get The Funk Out",
+      "length": "4:21",
+      "artist": "Extreme",
+      "album": "Extreme II: Pornograffitti",
+      "rating": "5",
+      "spotifyID": "5nDY2KxY4o4kiBxO1tGDGe"
+    },
+    {
+      "id": 2,
+      "title": "Tudo Que Eu Sempre Sonhei",
+      "length": "3:36",
+      "artist": "Pullovers",
+      "album": "Tudo Que Eu Sempre Sonhei",
+      "rating": "5",
+      "spotifyID": "40cEsZrGX8sSpgcSssfBcZ"
+    },
+    {
+      "id": 3,
+      "title": "Comfortably Numb",
+      "length": "6:22",
+      "artist": "Pink Floyd",
+      "album": "The Wall",
+      "rating": "5",
+      "spotifyID": "5HNCy40Ni5BZJFw1TKzRsC"
+    },
+    {
+      "id": 4,
+      "title": "November Rain",
+      "length": "8:56",
+      "artist": "Guns N' Roses",
+      "album": "Use Your Illusion I",
+      "rating": "5",
+      "spotifyID": "3YRCqOhFifThpSRFJ1VWFM"
+    },
+    {
+      "id": 5,
+      "title": "Moon Over The Castle (Gran Turismo)",
+      "length": "4:24",
+      "artist": "Ferdk",
+      "album": "Videogame Covers Vol 2",
+      "rating": "5",
+      "spotifyID": "67Tbxf7qmU42hgS2cpXRfT"
+    }
+  ]
+}
