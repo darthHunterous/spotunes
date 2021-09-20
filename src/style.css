@@ -1,14 +1,16 @@
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
 }
 
 .navbar-player {
-  background-color: #DDD;
+  background-color: #ddd;
   /* height: 80px; */
   height: 8vh;
 }
 
-.volume-slider::-webkit-slider-runnable-track  {
+.volume-slider::-webkit-slider-runnable-track {
   background-color: #212529 !important;
 }
 
@@ -20,10 +22,16 @@ html, body, #root {
 
 .footer {
   height: 3vh;
-  background-color: #DDD;
+  background-color: #ddd;
   font-weight: 600;
 }
 
 .main-content {
   height: 89vh;
+}
+
+.song-table {
+  height: 89vh;
+  /* width: calc(10 / 12) * 100vw; */
+  overflow: scroll;
 }

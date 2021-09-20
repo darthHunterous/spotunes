@@ -72,7 +72,7 @@ function App() {
 
       <Container fluid className="main-content">
         <Row className="h-100">
-          <Col md="1">
+          <Col md="1 h-100">
             <h6 className="mt-3">Biblioteca</h6>
             <ListGroup defaultActiveKey="#link1">
               <ListGroup.Item action href="#link1" variant="light">
@@ -115,7 +115,7 @@ function App() {
             </ListGroup>
           </Col>
 
-          <Col className="pt-5 bg-light">
+          <Col className="pt-5 bg-light song-table h-100">
             <Table striped bordered hover responsive>
               <thead>
                 <tr>
@@ -138,11 +138,61 @@ function App() {
                     <td>{song.rating}</td>
                   </tr>
                 ))}
+                {songData.map((song) => (
+                  <tr onDoubleClick={() => setPlayerSongID(song.spotifyID)}>
+                    <td>{song.id}</td>
+                    <td>{song.title}</td>
+                    <td>{song.length}</td>
+                    <td>{song.artist}</td>
+                    <td>{song.album}</td>
+                    <td>{song.rating}</td>
+                  </tr>
+                ))}
+                {songData.map((song) => (
+                  <tr onDoubleClick={() => setPlayerSongID(song.spotifyID)}>
+                    <td>{song.id}</td>
+                    <td>{song.title}</td>
+                    <td>{song.length}</td>
+                    <td>{song.artist}</td>
+                    <td>{song.album}</td>
+                    <td>{song.rating}</td>
+                  </tr>
+                ))}
+                {songData.map((song) => (
+                  <tr onDoubleClick={() => setPlayerSongID(song.spotifyID)}>
+                    <td>{song.id}</td>
+                    <td>{song.title}</td>
+                    <td>{song.length}</td>
+                    <td>{song.artist}</td>
+                    <td>{song.album}</td>
+                    <td>{song.rating}</td>
+                  </tr>
+                ))}
+                {songData.map((song) => (
+                  <tr onDoubleClick={() => setPlayerSongID(song.spotifyID)}>
+                    <td>{song.id}</td>
+                    <td>{song.title}</td>
+                    <td>{song.length}</td>
+                    <td>{song.artist}</td>
+                    <td>{song.album}</td>
+                    <td>{song.rating}</td>
+                  </tr>
+                ))}
+                {songData.map((song) => (
+                  <tr onDoubleClick={() => setPlayerSongID(song.spotifyID)}>
+                    <td>{song.id}</td>
+                    <td>{song.title}</td>
+                    <td>{song.length}</td>
+                    <td>{song.artist}</td>
+                    <td>{song.album}</td>
+                    <td>{song.rating}</td>
+                  </tr>
+                ))}
               </tbody>
             </Table>
           </Col>
 
-          <Col md="1" className="d-flex flex-column justify-content-between">
+          <Col md="1" className="d-flex flex-column justify-content-between h-100">
             <div>
               <h6 className="mt-3">Playlist Atual</h6>
               <ListGroup defaultActiveKey="#link1">
