@@ -13,6 +13,18 @@ import Table from 'react-bootstrap/Table';
 
 import { PlayerIcon } from 'react-player-controls';
 
+const handleSearch = async (event) => {
+  event.preventDefault();
+  const query = event.target.elements.searchQuery.value;
+
+  const url = new URL('http://localhost:8888/api/spotify/search');
+  const params = { title: query };
+  url.search = new URLSearchParams(params).toString();
+
+  const data = await (fetch(url))
+    .then((response) => response.json())
+  console.log(data);
+}
 
 function App() {
   const [songData, setSongData] = useState([]);
@@ -57,14 +69,15 @@ function App() {
             <iframe title="Spotify Embedded Player" src={`https://open.spotify.com/embed/track/${playerSongID}`} width="100%" height="100%" frameborder="0"
               allowtransparency="true" allow="encrypted-media" seamless="seamless"></iframe></Col>
           <Col className="col-md-4 h-100 p-0 d-flex justify-content-center align-items-center">
-            <Form className="d-flex w-50">
+            <Form className="d-flex w-50" onSubmit={handleSearch}>
               <FormControl
                 type="search"
                 placeholder="Search"
                 className="mr-2 shadow-none"
                 aria-label="Search"
+                name="searchQuery"
               />
-              <Button variant="outline-dark">Search</Button>
+              <Button variant="outline-dark" type="submit">Search</Button>
             </Form>
           </Col>
         </Row>
@@ -128,56 +141,6 @@ function App() {
                 </tr>
               </thead>
               <tbody>
-                {songData.map((song) => (
-                  <tr onDoubleClick={() => setPlayerSongID(song.spotifyID)}>
-                    <td>{song.id}</td>
-                    <td>{song.title}</td>
-                    <td>{song.length}</td>
-                    <td>{song.artist}</td>
-                    <td>{song.album}</td>
-                    <td>{song.rating}</td>
-                  </tr>
-                ))}
-                {songData.map((song) => (
-                  <tr onDoubleClick={() => setPlayerSongID(song.spotifyID)}>
-                    <td>{song.id}</td>
-                    <td>{song.title}</td>
-                    <td>{song.length}</td>
-                    <td>{song.artist}</td>
-                    <td>{song.album}</td>
-                    <td>{song.rating}</td>
-                  </tr>
-                ))}
-                {songData.map((song) => (
-                  <tr onDoubleClick={() => setPlayerSongID(song.spotifyID)}>
-                    <td>{song.id}</td>
-                    <td>{song.title}</td>
-                    <td>{song.length}</td>
-                    <td>{song.artist}</td>
-                    <td>{song.album}</td>
-                    <td>{song.rating}</td>
-                  </tr>
-                ))}
-                {songData.map((song) => (
-                  <tr onDoubleClick={() => setPlayerSongID(song.spotifyID)}>
-                    <td>{song.id}</td>
-                    <td>{song.title}</td>
-                    <td>{song.length}</td>
-                    <td>{song.artist}</td>
-                    <td>{song.album}</td>
-                    <td>{song.rating}</td>
-                  </tr>
-                ))}
-                {songData.map((song) => (
-                  <tr onDoubleClick={() => setPlayerSongID(song.spotifyID)}>
-                    <td>{song.id}</td>
-                    <td>{song.title}</td>
-                    <td>{song.length}</td>
-                    <td>{song.artist}</td>
-                    <td>{song.album}</td>
-                    <td>{song.rating}</td>
-                  </tr>
-                ))}
                 {songData.map((song) => (
                   <tr onDoubleClick={() => setPlayerSongID(song.spotifyID)}>
                     <td>{song.id}</td>
