@@ -21,8 +21,6 @@ function App() {
   const [showSearchResultModal, setShowSearchResultModal] = useState(false);
   const [searchResultData, setSearchResultData] = useState([]);
 
-  const firstItemInRow = true;
-
   const handleSearch = async (event) => {
     event.preventDefault();
     const query = event.target.elements.searchQuery.value;
@@ -36,6 +34,9 @@ function App() {
 
     setSearchResultData(data);
     setShowSearchResultModal(true);
+  }
+  const handleAddToLibrary = (searchResultItemIndex) => {
+    setSongData([...songData, { ...searchResultData[searchResultItemIndex], rating: 0 }]);
   }
 
   const getSongData = () => {
@@ -149,11 +150,11 @@ function App() {
                 </tr>
               </thead>
               <tbody>
-                {songData.map((song) => (
+                {songData.map((song, index) => (
                   <tr onDoubleClick={() => setPlayerSongID(song.spotifyID)}>
-                    <td>{song.id}</td>
+                    <td>{index + 1}</td>
                     <td>{song.title}</td>
-                    <td>{song.length}</td>
+                    <td>{song.length_string}</td>
                     <td>{song.artist}</td>
                     <td>{song.album}</td>
                     <td>{song.rating}</td>
@@ -215,13 +216,21 @@ function App() {
                 <Col className="col-md-6">
                   <Card className="my-3">
                     <Card.Img variant="top" src={song.albumCover} />
-                    <Card.Header><b>{song.trackTitle}</b></Card.Header>
+                    <Card.Header><b>{song.title}</b></Card.Header>
                     <Card.Body>
                       <ListGroup variant="flush">
                         <ListGroup.Item><b>Artist</b>: {song.artist}</ListGroup.Item>
-                        <ListGroup.Item><b>Album</b>: {song.artist}</ListGroup.Item>
+                        <ListGroup.Item><b>Album</b>: {song.album}</ListGroup.Item>
+                        <ListGroup.Item>
+                          <b>Length</b>: {song.length_string}
+                        </ListGroup.Item>
                       </ListGroup>
-                      <Button variant="success" className="mt-3">Add To Library</Button>
+                      <Button
+                        variant="success"
+                        className="mt-3"
+                        onClick={() => handleAddToLibrary(index)}>
+                        Add To Library
+                      </Button>
                     </Card.Body>
                   </Card>
                 </Col>
