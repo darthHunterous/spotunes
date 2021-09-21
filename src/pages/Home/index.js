@@ -10,25 +10,33 @@ import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Table from 'react-bootstrap/Table';
+import Modal from 'react-bootstrap/Modal';
+import Card from 'react-bootstrap/Card';
 
 import { PlayerIcon } from 'react-player-controls';
-
-const handleSearch = async (event) => {
-  event.preventDefault();
-  const query = event.target.elements.searchQuery.value;
-
-  const url = new URL('http://localhost:8888/api/spotify/search');
-  const params = { title: query };
-  url.search = new URLSearchParams(params).toString();
-
-  const data = await (fetch(url))
-    .then((response) => response.json())
-  console.log(data);
-}
 
 function App() {
   const [songData, setSongData] = useState([]);
   const [playerSongID, setPlayerSongID] = useState(['5nDY2KxY4o4kiBxO1tGDGe']);
+  const [showSearchResultModal, setShowSearchResultModal] = useState(false);
+  const [searchResultData, setSearchResultData] = useState([]);
+
+  const firstItemInRow = true;
+
+  const handleSearch = async (event) => {
+    event.preventDefault();
+    const query = event.target.elements.searchQuery.value;
+
+    const url = new URL('http://localhost:8888/api/spotify/search');
+    const params = { title: query };
+    url.search = new URLSearchParams(params).toString();
+
+    const data = await (fetch(url))
+      .then((response) => response.json())
+
+    setSearchResultData(data);
+    setShowSearchResultModal(true);
+  }
 
   const getSongData = () => {
     fetch('data.json'
@@ -133,11 +141,11 @@ function App() {
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Título</th>
-                  <th>Duração</th>
-                  <th>Artista</th>
-                  <th>Álbum</th>
-                  <th>Classificação</th>
+                  <th>Title</th>
+                  <th>Length</th>
+                  <th>Artist</th>
+                  <th>Album</th>
+                  <th>Rating</th>
                 </tr>
               </thead>
               <tbody>
@@ -188,6 +196,40 @@ function App() {
       <Container fluid className="footer fixed-bottom d-flex align-items-center justify-content-center">
         <p className="m-0">928 itens | 2,5 dias </p>
       </Container>
+
+      <Modal
+        size="lg"
+        show={showSearchResultModal}
+        onHide={() => setShowSearchResultModal(false)}
+        aria-labelledby="example-modal-sizes-title-lg"
+      >
+        <Modal.Header>
+          <Modal.Title id="example-modal-sizes-title-lg">
+            Search Results (10):
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="px-4">
+          <ListGroup>
+            <Row>
+              {searchResultData.map((song, index) => (
+                <Col className="col-md-6">
+                  <Card className="my-3">
+                    <Card.Img variant="top" src={song.albumCover} />
+                    <Card.Header><b>{song.trackTitle}</b></Card.Header>
+                    <Card.Body>
+                      <ListGroup variant="flush">
+                        <ListGroup.Item><b>Artist</b>: {song.artist}</ListGroup.Item>
+                        <ListGroup.Item><b>Album</b>: {song.artist}</ListGroup.Item>
+                      </ListGroup>
+                      <Button variant="success" className="mt-3">Add To Library</Button>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+          </ListGroup>
+        </Modal.Body>
+      </Modal>
     </>
   );
 }
