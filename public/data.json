@@ -3,41 +3,51 @@
     {
       "spotifyID": "5nDY2KxY4o4kiBxO1tGDGe",
       "title": "Get The Funk Out",
-      "length": "4:21",
+      "length_string": "4:21",
+      "length_ms": 100000,
       "artist": "Extreme",
       "album": "Extreme II: Pornograffitti",
+      "album_cover": "Extreme II: Pornograffitti",
       "rating": "5"
     },
     {
       "spotifyID": "40cEsZrGX8sSpgcSssfBcZ",
       "title": "Tudo Que Eu Sempre Sonhei",
-      "length": "3:36",
+      "length_string": "3:36",
+      "length_ms": 100000,
       "artist": "Pullovers",
       "album": "Tudo Que Eu Sempre Sonhei",
+      "album_cover": "Extreme II: Pornograffitti",
       "rating": "5"
     },
     {
       "spotifyID": "5HNCy40Ni5BZJFw1TKzRsC",
       "title": "Comfortably Numb",
-      "length": "6:22",
+      "length_string": "6:22",
+      "length_ms": 100000,
       "artist": "Pink Floyd",
       "album": "The Wall",
+      "album_cover": "Extreme II: Pornograffitti",
       "rating": "5"
     },
     {
       "spotifyID": "3YRCqOhFifThpSRFJ1VWFM",
       "title": "November Rain",
-      "length": "8:56",
+      "length_string": "8:56",
+      "length_ms": 100000,
       "artist": "Guns N' Roses",
       "album": "Use Your Illusion I",
+      "album_cover": "Extreme II: Pornograffitti",
       "rating": "5"
     },
     {
       "spotifyID": "67Tbxf7qmU42hgS2cpXRfT",
       "title": "Moon Over The Castle (Gran Turismo)",
-      "length": "4:24",
+      "length_string": "4:24",
+      "length_ms": 100000,
       "artist": "Ferdk",
       "album": "Videogame Covers Vol 2",
+      "album_cover": "Extreme II: Pornograffitti",
       "rating": "5"
     }
   ]
