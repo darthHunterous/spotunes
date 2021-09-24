@@ -16,7 +16,7 @@ import Card from 'react-bootstrap/Card';
 import { PlayerIcon } from 'react-player-controls';
 
 function App() {
-  const API_URL = process.env.REACT_APP_API_URL || 'https://spotunes-server.herokuapp.com/';
+  const API_URL = process.env.REACT_APP_API_URL || 'https://spotunes-server.herokuapp.com';
   console.log(API_URL);
 
   const [songData, setSongData] = useState([]);
@@ -28,7 +28,7 @@ function App() {
     event.preventDefault();
     const query = event.target.elements.searchQuery.value;
 
-    const url = new URL('http://localhost:8888/api/spotify/search');
+    const url = new URL(`${API_URL}/api/spotify/search`);
     const params = { title: query };
     url.search = new URLSearchParams(params).toString();
 
