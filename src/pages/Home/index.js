@@ -16,6 +16,9 @@ import Card from 'react-bootstrap/Card';
 import { PlayerIcon } from 'react-player-controls';
 
 function App() {
+  const API_URL = process.env.REACT_APP_API_URL || 'https://spotunes-server.herokuapp.com/';
+  console.log(API_URL);
+
   const [songData, setSongData] = useState([]);
   const [playerSongID, setPlayerSongID] = useState(['5nDY2KxY4o4kiBxO1tGDGe']);
   const [showSearchResultModal, setShowSearchResultModal] = useState(false);
