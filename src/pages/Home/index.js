@@ -9,9 +9,10 @@ import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
-import Table from 'react-bootstrap/Table';
 import Modal from 'react-bootstrap/Modal';
 import Card from 'react-bootstrap/Card';
+
+import SongTable from '../../components/SongTable';
 
 import { PlayerIcon } from 'react-player-controls';
 
@@ -138,30 +139,7 @@ function App() {
           </Col>
 
           <Col className="pt-5 bg-light song-table h-100">
-            <Table striped bordered hover responsive>
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Title</th>
-                  <th>Length</th>
-                  <th>Artist</th>
-                  <th>Album</th>
-                  <th>Rating</th>
-                </tr>
-              </thead>
-              <tbody>
-                {songData.map((song, index) => (
-                  <tr onDoubleClick={() => setPlayerSongID(song.spotifyID)}>
-                    <td>{index + 1}</td>
-                    <td>{song.title}</td>
-                    <td>{song.length_string}</td>
-                    <td>{song.artist}</td>
-                    <td>{song.album}</td>
-                    <td>{song.rating}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
+            <SongTable songData={songData} setPlayerSongID={setPlayerSongID} />
           </Col>
 
           <Col md="1" className="d-flex flex-column justify-content-between h-100">
