@@ -88,7 +88,7 @@ function App() {
                 aria-label="Search"
                 name="searchQuery"
               />
-              <Button variant="outline-dark" type="submit">Search</Button>
+              <Button variant="dark" type="submit">Search</Button>
             </Form>
           </Col>
         </Row>
@@ -97,43 +97,43 @@ function App() {
       <Container fluid className="main-content">
         <Row className="h-100">
           <Col md="1 h-100">
-            <h6 className="mt-3">Biblioteca</h6>
-            <ListGroup defaultActiveKey="#link1">
-              <ListGroup.Item action href="#link1" variant="light">
+            <h5 className="mt-3 px-2">Biblioteca</h5>
+            <ListGroup className="mb-4" defaultActiveKey="#link1">
+              <ListGroup.Item action href="#link1" variant="dark">
                 Adicionadas Recentemente
               </ListGroup.Item>
-              <ListGroup.Item action href="#link2" variant="light">
+              <ListGroup.Item action href="#link2" variant="dark">
                 Artistas
               </ListGroup.Item>
-              <ListGroup.Item action href="#link3" variant="light">
+              <ListGroup.Item action href="#link3" variant="dark">
                 Álbuns
               </ListGroup.Item>
-              <ListGroup.Item action href="#link4" variant="light">
+              <ListGroup.Item action href="#link4" variant="dark">
                 Músicas
               </ListGroup.Item>
-              <ListGroup.Item action href="#link5" variant="light">
+              <ListGroup.Item action href="#link5" variant="dark">
                 Gêneros
               </ListGroup.Item>
-              <ListGroup.Item action href="#link6" variant="light">
+              <ListGroup.Item action href="#link6" variant="dark">
                 Vídeos
               </ListGroup.Item>
             </ListGroup>
 
-            <h6 className="mt-3">Todas Playlists</h6>
+            <h5 className="mt-3 px-2">Playlists</h5>
             <ListGroup defaultActiveKey="#link1">
-              <ListGroup.Item action href="#link1" variant="light">
+              <ListGroup.Item action href="#link1" variant="dark">
                 Mais Reproduzidas
               </ListGroup.Item>
-              <ListGroup.Item action href="#link2" variant="light">
+              <ListGroup.Item action href="#link2" variant="dark">
                 Recentemente Adicionadas
               </ListGroup.Item>
-              <ListGroup.Item action href="#link3" variant="light">
+              <ListGroup.Item action href="#link3" variant="dark">
                 Recentemente Modificadas
               </ListGroup.Item>
-              <ListGroup.Item action href="#link4" variant="light">
+              <ListGroup.Item action href="#link4" variant="dark">
                 Nunca Reproduzidas
               </ListGroup.Item>
-              <ListGroup.Item action href="#link5" variant="light">
+              <ListGroup.Item action href="#link5" variant="dark">
                 Melhores Classificadas
               </ListGroup.Item>
             </ListGroup>
@@ -145,21 +145,21 @@ function App() {
 
           <Col md="1" className="d-flex flex-column justify-content-between h-100">
             <div>
-              <h6 className="mt-3">Playlist Atual</h6>
+              <h5 className="mt-3 px-2">Current Playlist</h5>
               <ListGroup defaultActiveKey="#link1">
-                <ListGroup.Item action href="#link1" variant="light">
+                <ListGroup.Item action href="#link1" variant="dark">
                   Música
                 </ListGroup.Item>
-                <ListGroup.Item action href="#link2" variant="light">
+                <ListGroup.Item action href="#link2" variant="dark">
                   Música
                 </ListGroup.Item>
-                <ListGroup.Item action href="#link3" variant="light">
+                <ListGroup.Item action href="#link3" variant="dark">
                   Música
                 </ListGroup.Item>
-                <ListGroup.Item action href="#link4" variant="light">
+                <ListGroup.Item action href="#link4" variant="dark">
                   Música
                 </ListGroup.Item>
-                <ListGroup.Item action href="#link5" variant="light">
+                <ListGroup.Item action href="#link5" variant="dark">
                   Música
                 </ListGroup.Item>
               </ListGroup>
