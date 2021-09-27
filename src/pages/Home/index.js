@@ -27,6 +27,10 @@ function App() {
     event.preventDefault();
     const query = event.target.elements.searchQuery.value;
 
+    if (!query) {
+      return;
+    }
+
     const url = new URL('http://localhost:8888/api/spotify/search');
     const params = { title: query };
     url.search = new URLSearchParams(params).toString();
