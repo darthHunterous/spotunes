@@ -9,24 +9,29 @@ import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
-import Table from 'react-bootstrap/Table';
 import Modal from 'react-bootstrap/Modal';
 import Card from 'react-bootstrap/Card';
+
+import SongTable from '../../components/SongTable';
+import SpotifyiFrame from '../../components/SpotifyiFrame';
 
 import { PlayerIcon } from 'react-player-controls';
 
 function App() {
   const API_URL = process.env.REACT_APP_API_URL || 'https://spotunes-server.herokuapp.com';
-  console.log(API_URL);
 
   const [songData, setSongData] = useState([]);
-  const [playerSongID, setPlayerSongID] = useState(['5nDY2KxY4o4kiBxO1tGDGe']);
+  const [playerSongID, setPlayerSongID] = useState('');
   const [showSearchResultModal, setShowSearchResultModal] = useState(false);
   const [searchResultData, setSearchResultData] = useState([]);
 
   const handleSearch = async (event) => {
     event.preventDefault();
     const query = event.target.elements.searchQuery.value;
+
+    if (!query) {
+      return;
+    }
 
     const url = new URL(`${API_URL}/api/spotify/search`);
     const params = { title: query };
@@ -78,8 +83,8 @@ function App() {
             </div>
           </Col>
           <Col className="col-md-4 h-100 p-0">
-            <iframe title="Spotify Embedded Player" src={`https://open.spotify.com/embed/track/${playerSongID}`} width="100%" height="100%" frameborder="0"
-              allowtransparency="true" allow="encrypted-media" seamless="seamless"></iframe></Col>
+            <SpotifyiFrame playerSongID={playerSongID} />
+          </Col>
           <Col className="col-md-4 h-100 p-0 d-flex justify-content-center align-items-center">
             <Form className="d-flex w-50" onSubmit={handleSearch}>
               <FormControl
@@ -89,7 +94,7 @@ function App() {
                 aria-label="Search"
                 name="searchQuery"
               />
-              <Button variant="outline-dark" type="submit">Search</Button>
+              <Button variant="dark" type="submit">Search</Button>
             </Form>
           </Col>
         </Row>
@@ -98,92 +103,69 @@ function App() {
       <Container fluid className="main-content">
         <Row className="h-100">
           <Col md="1 h-100">
-            <h6 className="mt-3">Biblioteca</h6>
-            <ListGroup defaultActiveKey="#link1">
-              <ListGroup.Item action href="#link1" variant="light">
+            <h5 className="mt-3 px-2">Biblioteca</h5>
+            <ListGroup className="mb-4" defaultActiveKey="#link1">
+              <ListGroup.Item action href="#link1" variant="dark">
                 Adicionadas Recentemente
               </ListGroup.Item>
-              <ListGroup.Item action href="#link2" variant="light">
+              <ListGroup.Item action href="#link2" variant="dark">
                 Artistas
               </ListGroup.Item>
-              <ListGroup.Item action href="#link3" variant="light">
+              <ListGroup.Item action href="#link3" variant="dark">
                 Álbuns
               </ListGroup.Item>
-              <ListGroup.Item action href="#link4" variant="light">
+              <ListGroup.Item action href="#link4" variant="dark">
                 Músicas
               </ListGroup.Item>
-              <ListGroup.Item action href="#link5" variant="light">
+              <ListGroup.Item action href="#link5" variant="dark">
                 Gêneros
               </ListGroup.Item>
-              <ListGroup.Item action href="#link6" variant="light">
+              <ListGroup.Item action href="#link6" variant="dark">
                 Vídeos
               </ListGroup.Item>
             </ListGroup>
 
-            <h6 className="mt-3">Todas Playlists</h6>
+            <h5 className="mt-3 px-2">Playlists</h5>
             <ListGroup defaultActiveKey="#link1">
-              <ListGroup.Item action href="#link1" variant="light">
+              <ListGroup.Item action href="#link1" variant="dark">
                 Mais Reproduzidas
               </ListGroup.Item>
-              <ListGroup.Item action href="#link2" variant="light">
+              <ListGroup.Item action href="#link2" variant="dark">
                 Recentemente Adicionadas
               </ListGroup.Item>
-              <ListGroup.Item action href="#link3" variant="light">
+              <ListGroup.Item action href="#link3" variant="dark">
                 Recentemente Modificadas
               </ListGroup.Item>
-              <ListGroup.Item action href="#link4" variant="light">
+              <ListGroup.Item action href="#link4" variant="dark">
                 Nunca Reproduzidas
               </ListGroup.Item>
-              <ListGroup.Item action href="#link5" variant="light">
+              <ListGroup.Item action href="#link5" variant="dark">
                 Melhores Classificadas
               </ListGroup.Item>
             </ListGroup>
           </Col>
 
           <Col className="pt-5 bg-light song-table h-100">
-            <Table striped bordered hover responsive>
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Title</th>
-                  <th>Length</th>
-                  <th>Artist</th>
-                  <th>Album</th>
-                  <th>Rating</th>
-                </tr>
-              </thead>
-              <tbody>
-                {songData.map((song, index) => (
-                  <tr onDoubleClick={() => setPlayerSongID(song.spotifyID)}>
-                    <td>{index + 1}</td>
-                    <td>{song.title}</td>
-                    <td>{song.length_string}</td>
-                    <td>{song.artist}</td>
-                    <td>{song.album}</td>
-                    <td>{song.rating}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
+            <SongTable songData={songData} setPlayerSongID={setPlayerSongID} />
           </Col>
 
           <Col md="1" className="d-flex flex-column justify-content-between h-100">
             <div>
-              <h6 className="mt-3">Playlist Atual</h6>
+              <h5 className="mt-3 px-2">Current Playlist</h5>
               <ListGroup defaultActiveKey="#link1">
-                <ListGroup.Item action href="#link1" variant="light">
+                <ListGroup.Item action href="#link1" variant="dark">
                   Música
                 </ListGroup.Item>
-                <ListGroup.Item action href="#link2" variant="light">
+                <ListGroup.Item action href="#link2" variant="dark">
                   Música
                 </ListGroup.Item>
-                <ListGroup.Item action href="#link3" variant="light">
+                <ListGroup.Item action href="#link3" variant="dark">
                   Música
                 </ListGroup.Item>
-                <ListGroup.Item action href="#link4" variant="light">
+                <ListGroup.Item action href="#link4" variant="dark">
                   Música
                 </ListGroup.Item>
-                <ListGroup.Item action href="#link5" variant="light">
+                <ListGroup.Item action href="#link5" variant="dark">
                   Música
                 </ListGroup.Item>
               </ListGroup>
