@@ -35,3 +35,11 @@ body,
   /* width: calc(10 / 12) * 100vw; */
   overflow: scroll;
 }
+
+td {
+  cursor: pointer;
+}
+
+th {
+  cursor: default;
+}
