@@ -13,12 +13,13 @@ import Modal from 'react-bootstrap/Modal';
 import Card from 'react-bootstrap/Card';
 
 import SongTable from '../../components/SongTable';
+import SpotifyiFrame from '../../components/SpotifyiFrame';
 
 import { PlayerIcon } from 'react-player-controls';
 
 function App() {
   const [songData, setSongData] = useState([]);
-  const [playerSongID, setPlayerSongID] = useState(['5nDY2KxY4o4kiBxO1tGDGe']);
+  const [playerSongID, setPlayerSongID] = useState('');
   const [showSearchResultModal, setShowSearchResultModal] = useState(false);
   const [searchResultData, setSearchResultData] = useState([]);
 
@@ -76,8 +77,8 @@ function App() {
             </div>
           </Col>
           <Col className="col-md-4 h-100 p-0">
-            <iframe title="Spotify Embedded Player" src={`https://open.spotify.com/embed/track/${playerSongID}`} width="100%" height="100%" frameborder="0"
-              allowtransparency="true" allow="encrypted-media" seamless="seamless"></iframe></Col>
+            <SpotifyiFrame playerSongID={playerSongID} />
+          </Col>
           <Col className="col-md-4 h-100 p-0 d-flex justify-content-center align-items-center">
             <Form className="d-flex w-50" onSubmit={handleSearch}>
               <FormControl
