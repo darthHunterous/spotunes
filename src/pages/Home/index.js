@@ -80,7 +80,7 @@ function App() {
       </Container>
 
       <Container fluid className="footer fixed-bottom d-flex align-items-center justify-content-center border-top border-dark border-2">
-        <p className="m-0">{songData.length} {songData.length == 1 ? 'song' : 'songs'} | {libraryTotalLengthInMinutes()} minutes </p>
+        <p className="m-0">{songData.length} {songData.length === 1 ? 'song' : 'songs'} | {libraryTotalLengthInMinutes()} minutes </p>
       </Container>
 
       <SearchResultModal
