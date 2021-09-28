@@ -40,6 +40,14 @@ function App() {
   //   getSongData()
   // }, [])
 
+  const libraryTotalLengthInMinutes = () => {
+    const totalMilliseconds = songData.reduce((sum, song) => {
+      return sum + song.length_ms;
+    }, 0)
+
+    return (totalMilliseconds / 60000).toFixed(1);
+  }
+
   return (
     <>
       <Container className="navbar-player p-0" fluid>
@@ -81,7 +89,7 @@ function App() {
       </Container>
 
       <Container fluid className="footer fixed-bottom d-flex align-items-center justify-content-center border-top border-dark border-2">
-        <p className="m-0">928 itens | 2,5 dias </p>
+        <p className="m-0">{songData.length} {songData.length == 1 ? 'song' : 'songs'} | {libraryTotalLengthInMinutes()} minutes </p>
       </Container>
 
       <SearchResultModal
