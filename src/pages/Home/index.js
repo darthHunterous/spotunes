@@ -19,26 +19,26 @@ function App() {
   const [showSearchResultModal, setShowSearchResultModal] = useState(false);
   const [searchResultData, setSearchResultData] = useState([]);
 
-  const getSongData = () => {
-    fetch('data.json'
-      , {
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        }
-      }
-    )
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (myJson) {
-        setSongData(myJson.songs);
-      });
-  }
+  // const getSongData = () => {
+  //   fetch('data.json'
+  //     , {
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         'Accept': 'application/json'
+  //       }
+  //     }
+  //   )
+  //     .then(function (response) {
+  //       return response.json();
+  //     })
+  //     .then(function (myJson) {
+  //       setSongData(myJson.songs);
+  //     });
+  // }
 
-  useEffect(() => {
-    getSongData()
-  }, [])
+  // useEffect(() => {
+  //   getSongData()
+  // }, [])
 
   return (
     <>
