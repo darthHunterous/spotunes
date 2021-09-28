@@ -19,26 +19,17 @@ function App() {
   const [showSearchResultModal, setShowSearchResultModal] = useState(false);
   const [searchResultData, setSearchResultData] = useState([]);
 
-  // const getSongData = () => {
-  //   fetch('data.json'
-  //     , {
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         'Accept': 'application/json'
-  //       }
-  //     }
-  //   )
-  //     .then(function (response) {
-  //       return response.json();
-  //     })
-  //     .then(function (myJson) {
-  //       setSongData(myJson.songs);
-  //     });
-  // }
+  const loadSongData = () => {
+    setSongData(JSON.parse(localStorage.getItem(`songData`)));
+  }
 
-  // useEffect(() => {
-  //   getSongData()
-  // }, [])
+  useEffect(() => {
+    loadSongData()
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('songData', JSON.stringify(songData))
+  }, [songData]);
 
   const libraryTotalLengthInMinutes = () => {
     const totalMilliseconds = songData.reduce((sum, song) => {
