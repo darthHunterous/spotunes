@@ -5,17 +5,16 @@ import '../../style.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Modal from 'react-bootstrap/Modal';
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
 import SongTable from '../../components/SongTable';
 import SpotifyiFrame from '../../components/SpotifyiFrame';
 import ListGroupSection from '../../components/ListGroupSection';
 import MusicPlayerControls from '../../components/MusicPlayerControls';
+import SearchForm from '../../components/SearchForm';
 
 function App() {
   const [songData, setSongData] = useState([]);
@@ -23,24 +22,6 @@ function App() {
   const [showSearchResultModal, setShowSearchResultModal] = useState(false);
   const [searchResultData, setSearchResultData] = useState([]);
 
-  const handleSearch = async (event) => {
-    event.preventDefault();
-    const query = event.target.elements.searchQuery.value;
-
-    if (!query) {
-      return;
-    }
-
-    const url = new URL('http://localhost:8888/api/spotify/search');
-    const params = { title: query };
-    url.search = new URLSearchParams(params).toString();
-
-    const data = await (fetch(url))
-      .then((response) => response.json())
-
-    setSearchResultData(data);
-    setShowSearchResultModal(true);
-  }
   const handleAddToLibrary = (searchResultItemIndex) => {
     setSongData([...songData, { ...searchResultData[searchResultItemIndex], rating: 0 }]);
   }
@@ -77,16 +58,7 @@ function App() {
             <SpotifyiFrame playerSongID={playerSongID} />
           </Col>
           <Col className="col-md-4 h-100 p-0 d-flex justify-content-center align-items-center">
-            <Form className="d-flex w-50" onSubmit={handleSearch}>
-              <FormControl
-                type="search"
-                placeholder="Search"
-                className="mr-2 shadow-none"
-                aria-label="Search"
-                name="searchQuery"
-              />
-              <Button variant="dark" type="submit">Search</Button>
-            </Form>
+            <SearchForm setSearchResultData={setSearchResultData} setShowSearchResultModal={setShowSearchResultModal} />
           </Col>
         </Row>
       </Container>
