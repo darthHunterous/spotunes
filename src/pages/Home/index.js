@@ -14,8 +14,8 @@ import Card from 'react-bootstrap/Card';
 
 import SongTable from '../../components/SongTable';
 import SpotifyiFrame from '../../components/SpotifyiFrame';
-
-import { PlayerIcon } from 'react-player-controls';
+import ListGroupSection from '../../components/ListGroupSection';
+import MusicPlayerControls from '../../components/MusicPlayerControls';
 
 function App() {
   const [songData, setSongData] = useState([]);
@@ -71,14 +71,7 @@ function App() {
       <Container className="navbar-player p-0" fluid>
         <Row className="h-100 w-100 m-0">
           <Col className="col-md-4 h-100 p-0 d-flex justify-content-evenly">
-            <div className="d-flex align-items-center">
-              <PlayerIcon.Previous width={32} height={32} style={{ marginRight: 32 }} />
-              <PlayerIcon.Play width={32} height={32} style={{ marginRight: 32 }} />
-              <PlayerIcon.Next width={32} height={32} style={{ marginRight: 32 }} />
-            </div>
-            <div className="d-flex align-items-center">
-              <Form.Range className="volume-slider" />
-            </div>
+            <MusicPlayerControls />
           </Col>
           <Col className="col-md-4 h-100 p-0">
             <SpotifyiFrame playerSongID={playerSongID} />
@@ -101,46 +94,8 @@ function App() {
       <Container fluid className="main-content">
         <Row className="h-100">
           <Col md="1 h-100">
-            <h5 className="mt-3 px-2">Biblioteca</h5>
-            <ListGroup className="mb-4" defaultActiveKey="#link1">
-              <ListGroup.Item action href="#link1" variant="dark">
-                Adicionadas Recentemente
-              </ListGroup.Item>
-              <ListGroup.Item action href="#link2" variant="dark">
-                Artistas
-              </ListGroup.Item>
-              <ListGroup.Item action href="#link3" variant="dark">
-                Álbuns
-              </ListGroup.Item>
-              <ListGroup.Item action href="#link4" variant="dark">
-                Músicas
-              </ListGroup.Item>
-              <ListGroup.Item action href="#link5" variant="dark">
-                Gêneros
-              </ListGroup.Item>
-              <ListGroup.Item action href="#link6" variant="dark">
-                Vídeos
-              </ListGroup.Item>
-            </ListGroup>
-
-            <h5 className="mt-3 px-2">Playlists</h5>
-            <ListGroup defaultActiveKey="#link1">
-              <ListGroup.Item action href="#link1" variant="dark">
-                Mais Reproduzidas
-              </ListGroup.Item>
-              <ListGroup.Item action href="#link2" variant="dark">
-                Recentemente Adicionadas
-              </ListGroup.Item>
-              <ListGroup.Item action href="#link3" variant="dark">
-                Recentemente Modificadas
-              </ListGroup.Item>
-              <ListGroup.Item action href="#link4" variant="dark">
-                Nunca Reproduzidas
-              </ListGroup.Item>
-              <ListGroup.Item action href="#link5" variant="dark">
-                Melhores Classificadas
-              </ListGroup.Item>
-            </ListGroup>
+            <ListGroupSection title="Library" items={['Songs', 'Artists', 'Albums', 'Genres', 'Videos', 'Recently Added']} />
+            <ListGroupSection title="Playlists" items={['Most Played', 'Recently Added', 'Recently Modified', 'Never Played', 'Best Rated']} />
           </Col>
 
           <Col className="pt-5 bg-light song-table h-100">
@@ -149,24 +104,7 @@ function App() {
 
           <Col md="1" className="d-flex flex-column justify-content-between h-100">
             <div>
-              <h5 className="mt-3 px-2">Current Playlist</h5>
-              <ListGroup defaultActiveKey="#link1">
-                <ListGroup.Item action href="#link1" variant="dark">
-                  Música
-                </ListGroup.Item>
-                <ListGroup.Item action href="#link2" variant="dark">
-                  Música
-                </ListGroup.Item>
-                <ListGroup.Item action href="#link3" variant="dark">
-                  Música
-                </ListGroup.Item>
-                <ListGroup.Item action href="#link4" variant="dark">
-                  Música
-                </ListGroup.Item>
-                <ListGroup.Item action href="#link5" variant="dark">
-                  Música
-                </ListGroup.Item>
-              </ListGroup>
+              <ListGroupSection title="Current Playlist" items={['Song', 'Song', 'Song', 'Song', 'Song', 'Song']} />
             </div>
 
             <div>
