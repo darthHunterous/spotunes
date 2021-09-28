@@ -20,7 +20,14 @@ function App() {
   const [searchResultData, setSearchResultData] = useState([]);
 
   const loadSongData = () => {
-    setSongData(JSON.parse(localStorage.getItem(`songData`)));
+    const storageData = localStorage.getItem('songData');
+
+    if (storageData) {
+      setSongData(JSON.parse(storageData));
+    }
+    else {
+      setSongData([]);
+    }
   }
 
   useEffect(() => {
