@@ -18,7 +18,8 @@ export default function SpotifyiFrame({ playerSongID }) {
           src="/spotifyiFrame-placeholder.jpg"
           alt="Spotify iFrame Placeholder"
           width="100%"
-          height="100%" />
+          height="100%"
+        />
       }
     </>
   )
