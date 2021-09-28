@@ -5,26 +5,19 @@ import '../../style.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Modal from 'react-bootstrap/Modal';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
 
 import SongTable from '../../components/SongTable';
 import SpotifyiFrame from '../../components/SpotifyiFrame';
 import ListGroupSection from '../../components/ListGroupSection';
 import MusicPlayerControls from '../../components/MusicPlayerControls';
 import SearchForm from '../../components/SearchForm';
+import SearchResultModal from "../../components/SearchResultModal";
 
 function App() {
   const [songData, setSongData] = useState([]);
   const [playerSongID, setPlayerSongID] = useState('');
   const [showSearchResultModal, setShowSearchResultModal] = useState(false);
   const [searchResultData, setSearchResultData] = useState([]);
-
-  const handleAddToLibrary = (searchResultItemIndex) => {
-    setSongData([...songData, { ...searchResultData[searchResultItemIndex], rating: 0 }]);
-  }
 
   const getSongData = () => {
     fetch('data.json'
@@ -91,47 +84,13 @@ function App() {
         <p className="m-0">928 itens | 2,5 dias </p>
       </Container>
 
-      <Modal
-        size="lg"
-        show={showSearchResultModal}
-        onHide={() => setShowSearchResultModal(false)}
-        aria-labelledby="example-modal-sizes-title-lg"
-      >
-        <Modal.Header>
-          <Modal.Title id="example-modal-sizes-title-lg">
-            Search Results (10):
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="px-4">
-          <ListGroup>
-            <Row>
-              {searchResultData.map((song, index) => (
-                <Col className="col-md-6">
-                  <Card className="my-3">
-                    <Card.Img variant="top" src={song.albumCover} />
-                    <Card.Header><b>{song.title}</b></Card.Header>
-                    <Card.Body>
-                      <ListGroup variant="flush">
-                        <ListGroup.Item><b>Artist</b>: {song.artist}</ListGroup.Item>
-                        <ListGroup.Item><b>Album</b>: {song.album}</ListGroup.Item>
-                        <ListGroup.Item>
-                          <b>Length</b>: {song.length_string}
-                        </ListGroup.Item>
-                      </ListGroup>
-                      <Button
-                        variant="success"
-                        className="mt-3"
-                        onClick={() => handleAddToLibrary(index)}>
-                        Add To Library
-                      </Button>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              ))}
-            </Row>
-          </ListGroup>
-        </Modal.Body>
-      </Modal>
+      <SearchResultModal
+        searchResultData={searchResultData}
+        showSearchResultModal={showSearchResultModal}
+        setShowSearchResultModal={setShowSearchResultModal}
+        songData={songData}
+        setSongData={setSongData}
+      />
     </>
   );
 }
