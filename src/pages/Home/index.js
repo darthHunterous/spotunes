@@ -19,6 +19,34 @@ function App() {
   const [showSearchResultModal, setShowSearchResultModal] = useState(false);
   const [searchResultData, setSearchResultData] = useState([]);
 
+  const initial_playlists = [
+    {
+      title: 'Most Played',
+      isSmart: true,
+      songs: []
+    },
+    {
+      title: 'Recently Added',
+      isSmart: true,
+      songs: []
+    },
+    {
+      title: 'Recently Modified',
+      isSmart: true,
+      songs: []
+    },
+    {
+      title: 'Never Played',
+      isSmart: true,
+      songs: []
+    },
+    {
+      title: 'Best Rated',
+      isSmart: true,
+      songs: []
+    }
+  ];
+
   const loadSongData = () => {
     const storageData = localStorage.getItem('songData');
 
@@ -66,7 +94,7 @@ function App() {
         <Row className="h-100">
           <Col md="1" className="h-100 border-end border-dark border-2">
             <ListGroupSection title="Library" items={['Songs', 'Artists', 'Albums', 'Genres', 'Videos', 'Recently Added']} />
-            <ListGroupSection title="Playlists" items={['Most Played', 'Recently Added', 'Recently Modified', 'Never Played', 'Best Rated']} />
+            <ListGroupSection title="Playlists" items={initial_playlists.map((playlist) => playlist.title)} />
           </Col>
 
           <Col className="pt-5 bg-light song-table h-100">
