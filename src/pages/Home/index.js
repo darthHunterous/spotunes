@@ -12,12 +12,15 @@ import ListGroupSection from '../../components/ListGroupSection';
 import MusicPlayerControls from '../../components/MusicPlayerControls';
 import SearchForm from '../../components/SearchForm';
 import SearchResultModal from "../../components/SearchResultModal";
+import AddToPlaylistModal from "../../components/AddToPlaylistModal";
 
 function App() {
   const [songData, setSongData] = useState([]);
   const [playerSongID, setPlayerSongID] = useState('');
-  const [showSearchResultModal, setShowSearchResultModal] = useState(false);
+  const [addToPlaylistChosenSong, setAddToPlaylistChosenSong] = useState('');
   const [searchResultData, setSearchResultData] = useState([]);
+  const [showSearchResultModal, setShowSearchResultModal] = useState(false);
+  const [showAddToPlaylistModal, setShowAddToPlaylistModal] = useState(false);
 
   const initial_playlists = [
     {
@@ -44,8 +47,24 @@ function App() {
       title: 'Best Rated',
       isSmart: true,
       songs: []
+    },
+    {
+      title: 'Play01',
+      isSmart: false,
+      songs: []
+    },
+    {
+      title: 'Play02',
+      isSmart: false,
+      songs: []
+    },
+    {
+      title: 'Play03',
+      isSmart: false,
+      songs: []
     }
   ];
+  const [playlists, setPlaylists] = useState(initial_playlists);
 
   const loadSongData = () => {
     const storageData = localStorage.getItem('songData');
@@ -98,7 +117,12 @@ function App() {
           </Col>
 
           <Col className="pt-5 bg-light song-table h-100">
-            <SongTable songData={songData} setPlayerSongID={setPlayerSongID} />
+            <SongTable
+              songData={songData}
+              setPlayerSongID={setPlayerSongID}
+              setShowAddToPlaylistModal={setShowAddToPlaylistModal}
+              setAddToPlaylistChosenSong={setAddToPlaylistChosenSong}
+            />
           </Col>
 
           <Col md="1" className="d-flex flex-column justify-content-between h-100 border-start border-dark border-2">
@@ -124,6 +148,13 @@ function App() {
         setShowSearchResultModal={setShowSearchResultModal}
         songData={songData}
         setSongData={setSongData}
+      />
+
+      <AddToPlaylistModal
+        showAddToPlaylistModal={showAddToPlaylistModal}
+        setShowAddToPlaylistModal={setShowAddToPlaylistModal}
+        addToPlaylistChosenSong={addToPlaylistChosenSong}
+        playlists={playlists}
       />
     </>
   );

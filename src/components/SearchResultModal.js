@@ -23,6 +23,7 @@ export default function SearchResultModal({ searchResultData, showSearchResultMo
         <Modal.Title id="example-modal-sizes-title-lg">
           Search Results (10):
         </Modal.Title>
+        <Button className="btn-close" variant="danger" onClick={() => setShowSearchResultModal(false)}></Button>
       </Modal.Header>
       <Modal.Body className="px-4">
         <ListGroup>

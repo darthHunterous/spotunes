@@ -1,23 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Table from 'react-bootstrap/Table';
 import Alert from 'react-bootstrap/Alert';
+import Button from 'react-bootstrap/Button';
 
-export default function SongTable({ songData, setPlayerSongID }) {
+
+export default function SongTable({ songData, setPlayerSongID, setShowAddToPlaylistModal, setAddToPlaylistChosenSong }) {
+  const addToPlaylist = (spotifyID) => {
+    setAddToPlaylistChosenSong(songData.find(song => song.spotifyID === spotifyID));
+    setShowAddToPlaylistModal(true);
+  }
 
   return (
     <>
       {
         (songData.length > 0)
           ? <Table striped bordered hover responsive>
-            < thead >
+            <thead>
               <tr>
                 <th>#</th>
                 <th>Title</th>
                 <th>Length</th>
                 <th>Artist</th>
                 <th>Album</th>
-                <th>Rating</th>
+                <th className='text-center'>Rating</th>
+                <th className='text-center'>Add To Playlist</th>
               </tr>
             </thead >
             <tbody>
@@ -29,6 +36,9 @@ export default function SongTable({ songData, setPlayerSongID }) {
                   <td>{song.artist}</td>
                   <td>{song.album}</td>
                   <td>{song.rating}</td>
+                  <td className='d-flex justify-content-center'>
+                    <Button key={song.spotifyID} onClick={() => addToPlaylist(song.spotifyID)} variant='success' size='sm'>Add to Playlist</Button>
+                  </td>
                 </tr>
               ))}
             </tbody>
