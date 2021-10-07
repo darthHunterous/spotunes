@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Modal from 'react-bootstrap/Modal';
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -8,11 +8,49 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 
-export default function AddToPlaylistModal({ showAddToPlaylistModal, setShowAddToPlaylistModal, addToPlaylistChosenSong, playlists }) {
+export default function AddToPlaylistModal({ showAddToPlaylistModal, setShowAddToPlaylistModal, addToPlaylistChosenSong, playlists, setPlaylists }) {
+  const [playlistChecked, setPlaylistChecked] = useState({});
+
+  const setCheckboxStatus = () => {
+    setPlaylistChecked(playlists.reduce(function (accumulator, playlist) {
+      return { ...accumulator, [playlist.id]: playlist.songs.some(song => song.spotifyID === addToPlaylistChosenSong.spotifyID) }
+    }, {}))
+  }
+
+  const handleToggle = ({ target }) => {
+    console.log(playlists)
+    setPlaylistChecked({
+      ...playlistChecked,
+      [target.name]: !playlistChecked[target.name]
+    })
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    Object.entries(playlistChecked).forEach((playlistStatus) => {
+      const [key, value] = playlistStatus;
+
+      const found_playlist = playlists.find(playlist => playlist.id === key)
+      const found_song = found_playlist.songs.find(song => song.spotifyID === addToPlaylistChosenSong.spotifyID)
+
+      if (value && !found_song) {
+        found_playlist.songs.push(addToPlaylistChosenSong)
+      }
+      else if (!value && found_song) {
+        found_playlist.songs = found_playlist.songs.filter(song => song.spotifyID !== addToPlaylistChosenSong.spotifyID)
+      }
+      setPlaylists(playlists);
+    });
+
+    setShowAddToPlaylistModal(false);
+  };
+
   return (
     <Modal
       size="lg"
       show={showAddToPlaylistModal}
+      onShow={setCheckboxStatus}
       onHide={() => setShowAddToPlaylistModal(false)}
       aria-labelledby="example-modal-sizes-title-lg"
     >
@@ -40,12 +78,21 @@ export default function AddToPlaylistModal({ showAddToPlaylistModal, setShowAddT
             </Card>
           </Col>
         </Row>
-        <h6>Select which Playlist(s) to add song to:</h6>
+        <h6>Select which non-smart Playlist(s) to add song to:</h6>
         <ListGroup>
-          <Form>
+          <Form onSubmit={handleSubmit}>
             {playlists.filter(playlist => !playlist.isSmart).map(playlist =>
-              (<ListGroup.Item>{playlist.title}</ListGroup.Item>)
+            (<ListGroup.Item>
+              <Form.Check
+                type='checkbox'
+                label={playlist.title}
+                checked={playlistChecked[playlist.id]}
+                name={playlist.id}
+                onChange={handleToggle}
+              />
+            </ListGroup.Item>)
             )}
+            <Button className="mt-3" variant="success" type="submit">Confirm</Button>
           </Form>
         </ListGroup>
       </Modal.Body>

@@ -24,41 +24,49 @@ function App() {
 
   const initial_playlists = [
     {
+      id: '1',
       title: 'Most Played',
       isSmart: true,
       songs: []
     },
     {
+      id: '2',
       title: 'Recently Added',
       isSmart: true,
       songs: []
     },
     {
+      id: '3',
       title: 'Recently Modified',
       isSmart: true,
       songs: []
     },
     {
+      id: '4',
       title: 'Never Played',
       isSmart: true,
       songs: []
     },
     {
+      id: '5',
       title: 'Best Rated',
       isSmart: true,
       songs: []
     },
     {
+      id: '6',
       title: 'Play01',
       isSmart: false,
       songs: []
     },
     {
+      id: '7',
       title: 'Play02',
       isSmart: false,
       songs: []
     },
     {
+      id: '8',
       title: 'Play03',
       isSmart: false,
       songs: []
@@ -155,6 +163,7 @@ function App() {
         setShowAddToPlaylistModal={setShowAddToPlaylistModal}
         addToPlaylistChosenSong={addToPlaylistChosenSong}
         playlists={playlists}
+        setPlaylists={setPlaylists}
       />
     </>
   );
