@@ -120,7 +120,10 @@ function App() {
       <Container fluid className="main-content">
         <Row className="h-100">
           <Col md="1" className="h-100 border-end border-dark border-2">
-            <ListGroupSection title="Library" items={['Songs', 'Artists', 'Albums', 'Genres', 'Videos', 'Recently Added']} />
+            <ListGroupSection
+              title="Library"
+              items={['Songs', 'Artists', 'Albums', 'Genres', 'Videos', 'Recently Added']}
+            />
             <ListGroupSection title="Playlists" items={initial_playlists.map((playlist) => playlist.title)} />
           </Col>
 
