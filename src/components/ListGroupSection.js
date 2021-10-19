@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import React from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 
 import ListGroup from 'react-bootstrap/ListGroup';
