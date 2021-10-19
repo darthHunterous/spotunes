@@ -122,9 +122,14 @@ function App() {
           <Col md="1" className="h-100 border-end border-dark border-2">
             <ListGroupSection
               title="Library"
-              items={['Songs', 'Artists', 'Albums', 'Genres', 'Videos', 'Recently Added']}
+              items={['All Songs', 'Artists', 'Albums', 'Genres', 'Videos', 'Recently Added']}
+              routes={['/all', '/artists', '/albums', '/genres', '/videos', '/recent']}
             />
-            <ListGroupSection title="Playlists" items={initial_playlists.map((playlist) => playlist.title)} />
+            <ListGroupSection
+              title="Playlists"
+              items={initial_playlists.map((playlist) => playlist.title)}
+              routes={initial_playlists.map((playlist) => `/playlist/${playlist.id}`)}
+            />
           </Col>
 
           <Col className="pt-5 bg-light song-table h-100">
@@ -138,7 +143,11 @@ function App() {
 
           <Col md="1" className="d-flex flex-column justify-content-between h-100 border-start border-dark border-2">
             <div>
-              <ListGroupSection title="Current Playlist" items={['Song', 'Song', 'Song', 'Song', 'Song', 'Song']} />
+              <ListGroupSection
+                title="Current Playlist"
+                items={['Song', 'Song', 'Song', 'Song', 'Song', 'Song']}
+                routes={['/song', '/song', '/song', '/song', '/song', '/song']}
+              />
             </div>
 
             <div>
