@@ -16,14 +16,37 @@ export default function ListGroupSection({ title, items, routes }) {
     e.target.style.color = 'rgb(255, 255, 255)';
   }
 
+  const handleMouseEnter = (e) => {
+    const color = e.target.style.backgroundColor;
+
+    if (color && color !== 'rgb(20, 22, 25)') {
+      e.target.style.backgroundColor = 'rgb(190, 190, 191)';
+    }
+  }
+
+  const handleMouseLeave = (e) => {
+    const color = e.target.style.backgroundColor;
+
+    if (color === 'rgb(190, 190, 191)') {
+      e.target.style.backgroundColor = '#d3d3d4';
+    }
+  }
+
   return (
     <>
       <h5 className="mt-3 px-2">{title}</h5>
       <ListGroup className="mb-4" defaultActiveKey="/all"
-        onClick={handleClick}>
+        onClick={handleClick}
+      >
         {items.map((item, index) => (
           <LinkContainer to={routes[index]}>
-            <ListGroup.Item action variant="dark" className="list-group-item-to-activate">
+            <ListGroup.Item
+              action
+              variant="dark"
+              className="list-group-item-to-activate"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
               {item}
             </ListGroup.Item>
           </LinkContainer>
