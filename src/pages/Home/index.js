@@ -115,16 +115,13 @@ function App() {
     }
   }, [current_path]);
 
-  const libraryTotalLengthInMinutes = () => {
-    const totalMilliseconds = songData.reduce((sum, song) => {
+  const selectedSongsTotalLengthInMinutes = () => {
+    const totalMilliseconds = filteredSongData.reduce((sum, song) => {
       return sum + song.length_ms;
     }, 0)
 
     return (totalMilliseconds / 60000).toFixed(1);
   }
-
-  // console.log(songData);
-  console.log(filteredSongData);
 
   return (
     <>
@@ -184,7 +181,7 @@ function App() {
       </Container>
 
       <Container fluid className="footer fixed-bottom d-flex align-items-center justify-content-center border-top border-dark border-2">
-        <p className="m-0">{songData.length} {songData.length === 1 ? 'song' : 'songs'} | {libraryTotalLengthInMinutes()} minutes </p>
+        <p className="m-0">{filteredSongData.length} {filteredSongData.length === 1 ? 'song' : 'songs'} | {selectedSongsTotalLengthInMinutes()} minutes </p>
       </Container>
 
       <SearchResultModal
