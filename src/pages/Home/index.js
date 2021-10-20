@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useLocation, useParams } from 'react-router-dom';
 
 import '../../style.css';
 
@@ -16,6 +17,7 @@ import AddToPlaylistModal from "../../components/AddToPlaylistModal";
 
 function App() {
   const [songData, setSongData] = useState([]);
+  const [filteredSongData, setFilteredSongData] = useState([]);
   const [playerSongID, setPlayerSongID] = useState('');
   const [addToPlaylistChosenSong, setAddToPlaylistChosenSong] = useState('');
   const [searchResultData, setSearchResultData] = useState([]);
@@ -93,6 +95,26 @@ function App() {
     localStorage.setItem('songData', JSON.stringify(songData))
   }, [songData]);
 
+  let current_path = useLocation().pathname;
+  let params = useParams();
+
+  useEffect(() => {
+    setFilteredSongData([]);
+
+    if (current_path.includes('/playlist')) {
+      const playlistID = params['id'];
+
+      const currentPlaylist = playlists.filter((playlist) => {
+        return playlist.id === playlistID;
+      });
+
+      setFilteredSongData(currentPlaylist[0].songs);
+    }
+    else if (current_path === '/all') {
+      setFilteredSongData(songData);
+    }
+  }, [current_path]);
+
   const libraryTotalLengthInMinutes = () => {
     const totalMilliseconds = songData.reduce((sum, song) => {
       return sum + song.length_ms;
@@ -100,6 +122,9 @@ function App() {
 
     return (totalMilliseconds / 60000).toFixed(1);
   }
+
+  // console.log(songData);
+  console.log(filteredSongData);
 
   return (
     <>
@@ -134,7 +159,7 @@ function App() {
 
           <Col className="pt-5 bg-light song-table h-100">
             <SongTable
-              songData={songData}
+              songData={filteredSongData}
               setPlayerSongID={setPlayerSongID}
               setShowAddToPlaylistModal={setShowAddToPlaylistModal}
               setAddToPlaylistChosenSong={setAddToPlaylistChosenSong}

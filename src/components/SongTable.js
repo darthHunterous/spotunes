@@ -44,7 +44,7 @@ export default function SongTable({ songData, setPlayerSongID, setShowAddToPlayl
             </tbody>
           </Table >
           : <Alert variant='warning'>
-            No songs in your library yet. Please add some through the search above!
+            No songs here yet. Please add some to start having fun with Spotunes!
           </Alert>
       }
     </>)
