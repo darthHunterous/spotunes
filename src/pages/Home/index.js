@@ -14,6 +14,7 @@ import MusicPlayerControls from '../../components/MusicPlayerControls';
 import SearchForm from '../../components/SearchForm';
 import SearchResultModal from "../../components/SearchResultModal";
 import AddToPlaylistModal from "../../components/AddToPlaylistModal";
+import AlbumsList from "../../components/AlbumsList";
 
 function App() {
   const [songData, setSongData] = useState([]);
@@ -23,17 +24,12 @@ function App() {
   const [searchResultData, setSearchResultData] = useState([]);
   const [showSearchResultModal, setShowSearchResultModal] = useState(false);
   const [showAddToPlaylistModal, setShowAddToPlaylistModal] = useState(false);
+  const [sortedAlbumsData, setSortedAlbumsData] = useState([]);
 
   const initial_playlists = [
     {
       id: '1',
       title: 'Most Played',
-      isSmart: true,
-      songs: []
-    },
-    {
-      id: '2',
-      title: 'Recently Added',
       isSmart: true,
       songs: []
     },
@@ -113,6 +109,19 @@ function App() {
     else if (current_path === '/all') {
       setFilteredSongData(songData);
     }
+    else if (current_path === '/albums') {
+      const albums = [];
+
+      songData.forEach((song) => albums.push({
+        id: song.albumID,
+        coverLink: song.albumCover,
+        name: song.album,
+        artist: song.artist
+      }));
+
+      albums.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+      setSortedAlbumsData(albums);
+    }
   }, [current_path]);
 
   const selectedSongsTotalLengthInMinutes = () => {
@@ -144,8 +153,8 @@ function App() {
           <Col md="1" className="h-100 border-end border-dark border-2">
             <ListGroupSection
               title="Library"
-              items={['All Songs', 'Artists', 'Albums', 'Genres', 'Videos', 'Recently Added']}
-              routes={['/all', '/artists', '/albums', '/genres', '/videos', '/recent']}
+              items={['All Songs', 'Artists', 'Albums', 'Genres', 'Recently Added']}
+              routes={['/all', '/artists', '/albums', '/genres', '/recent']}
             />
             <ListGroupSection
               title="Playlists"
@@ -155,12 +164,15 @@ function App() {
           </Col>
 
           <Col className="pt-5 bg-light song-table h-100">
-            <SongTable
-              songData={filteredSongData}
-              setPlayerSongID={setPlayerSongID}
-              setShowAddToPlaylistModal={setShowAddToPlaylistModal}
-              setAddToPlaylistChosenSong={setAddToPlaylistChosenSong}
-            />
+            {current_path === '/albums' ? <AlbumsList sortedAlbumsData={sortedAlbumsData} /> : ''}
+            {current_path != '/albums' ?
+              <SongTable
+                songData={filteredSongData}
+                setPlayerSongID={setPlayerSongID}
+                setShowAddToPlaylistModal={setShowAddToPlaylistModal}
+                setAddToPlaylistChosenSong={setAddToPlaylistChosenSong}
+              />
+              : ''}
           </Col>
 
           <Col md="1" className="d-flex flex-column justify-content-between h-100 border-start border-dark border-2">
