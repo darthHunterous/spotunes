@@ -17,7 +17,7 @@ export default function ArtistsList({ sortedArtistsData }) {
                             <Card className="my-3">
                                 <Card.Body>
                                     <Card.Title>{artist.name}</Card.Title>
-                                    <LinkContainer to={`/albums/${artist.id}`}>
+                                    <LinkContainer to={`/artists/${artist.id}`}>
                                         <Button variant="primary">Go To Artist Songs</Button>
                                     </LinkContainer>
                                 </Card.Body>
