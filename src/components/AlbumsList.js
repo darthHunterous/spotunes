@@ -1,4 +1,5 @@
 import React from 'react';
+import { LinkContainer } from 'react-router-bootstrap';
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -18,7 +19,9 @@ export default function AlbumsList({ sortedAlbumsData }) {
                                 <Card.Body>
                                     <Card.Title>{album.name}</Card.Title>
                                     <Card.Text>{album.artist}</Card.Text>
-                                    <Button variant="primary" href={`/albums/${album.id}`}>Go To Album</Button>
+                                    <LinkContainer to={`/albums/${album.id}`}>
+                                        <Button variant="primary">Go To Album</Button>
+                                    </LinkContainer>
                                 </Card.Body>
                             </Card>
                         </Col>

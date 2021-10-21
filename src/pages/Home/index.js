@@ -112,15 +112,28 @@ function App() {
     else if (current_path === '/albums') {
       const albums = [];
 
-      songData.forEach((song) => albums.push({
-        id: song.albumID,
-        coverLink: song.albumCover,
-        name: song.album,
-        artist: song.artist
-      }));
+      songData.forEach((song) => {
+        if (!albums.some(album => album.id === song.albumID)) {
+          albums.push({
+            id: song.albumID,
+            coverLink: song.albumCover,
+            name: song.album,
+            artist: song.artist
+          });
+        }
+      });
 
       albums.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
       setSortedAlbumsData(albums);
+    }
+    else if (current_path.includes('/albums')) {
+      const albumID = params['id'];
+
+      const currentAlbum = songData.filter((song) => song.albumID === albumID)
+      currentAlbum.sort((a, b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0));
+
+      console.log(currentAlbum)
+      setFilteredSongData(currentAlbum);
     }
   }, [current_path]);
 
@@ -167,7 +180,7 @@ function App() {
             {current_path === '/albums' ? <AlbumsList sortedAlbumsData={sortedAlbumsData} /> : ''}
             {current_path != '/albums' ?
               <SongTable
-                songData={filteredSongData}
+                songData={current_path === '/all' ? songData : filteredSongData}
                 setPlayerSongID={setPlayerSongID}
                 setShowAddToPlaylistModal={setShowAddToPlaylistModal}
                 setAddToPlaylistChosenSong={setAddToPlaylistChosenSong}
