@@ -15,6 +15,7 @@ import SearchForm from '../../components/SearchForm';
 import SearchResultModal from "../../components/SearchResultModal";
 import AddToPlaylistModal from "../../components/AddToPlaylistModal";
 import AlbumsList from "../../components/AlbumsList";
+import ArtistsList from "../../components/ArtistsList";
 
 function App() {
   const [songData, setSongData] = useState([]);
@@ -25,6 +26,7 @@ function App() {
   const [showSearchResultModal, setShowSearchResultModal] = useState(false);
   const [showAddToPlaylistModal, setShowAddToPlaylistModal] = useState(false);
   const [sortedAlbumsData, setSortedAlbumsData] = useState([]);
+  const [sortedArtistsData, setSortedArtistsData] = useState([]);
 
   const initial_playlists = [
     {
@@ -130,10 +132,27 @@ function App() {
       const albumID = params['id'];
 
       const currentAlbum = songData.filter((song) => song.albumID === albumID)
-      currentAlbum.sort((a, b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0));
+      currentAlbum.sort((a, b) => (a.title.toLowerCase() > b.title.toLowerCase()) ? 1
+        : ((b.title.toLowerCase() > a.title.toLowerCase()) ? -1 : 0));
 
       console.log(currentAlbum)
       setFilteredSongData(currentAlbum);
+    }
+    else if (current_path === '/artists') {
+      const artists = [];
+
+      songData.forEach((song) => {
+        if (!artists.some(artist => artist.id === song.artistID)) {
+          artists.push({
+            id: song.artistID,
+            name: song.artist
+          });
+        }
+      });
+
+      artists.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1
+        : ((b.name.toLowerCase() > a.name.toLowerCase()) ? -1 : 0));
+      setSortedArtistsData(artists);
     }
   }, [current_path]);
 
@@ -178,7 +197,8 @@ function App() {
 
           <Col className="pt-5 bg-light song-table h-100">
             {current_path === '/albums' ? <AlbumsList sortedAlbumsData={sortedAlbumsData} /> : ''}
-            {current_path != '/albums' ?
+            {current_path === '/artists' ? <ArtistsList sortedArtistsData={sortedArtistsData} /> : ''}
+            {(current_path != '/albums') && (current_path != '/artists') ?
               <SongTable
                 songData={current_path === '/all' ? songData : filteredSongData}
                 setPlayerSongID={setPlayerSongID}
