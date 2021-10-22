@@ -29,7 +29,6 @@ export default function SearchResultModal({ searchResultData, showSearchResultMo
         genres: selectedArtist.artistGenres,
         artistImageURL: selectedArtist.artistImageURL,
       }]);
-    console.log(songData);
   }
 
   return (

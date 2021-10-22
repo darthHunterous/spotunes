@@ -16,6 +16,7 @@ import SearchResultModal from "../../components/SearchResultModal";
 import AddToPlaylistModal from "../../components/AddToPlaylistModal";
 import AlbumsList from "../../components/AlbumsList";
 import ArtistsList from "../../components/ArtistsList";
+import GenresList from "../../components/GenresList";
 
 function App() {
   const [songData, setSongData] = useState([]);
@@ -27,6 +28,7 @@ function App() {
   const [showAddToPlaylistModal, setShowAddToPlaylistModal] = useState(false);
   const [sortedAlbumsData, setSortedAlbumsData] = useState([]);
   const [sortedArtistsData, setSortedArtistsData] = useState([]);
+  const [sortedGenresData, setSortedGenresData] = useState([]);
 
   const initial_playlists = [
     {
@@ -162,6 +164,14 @@ function App() {
 
       setFilteredSongData(currentArtistSongs);
     }
+    else if (current_path === '/genres') {
+      let genres = [];
+
+      songData.forEach(song => genres = genres.concat(song.genres));
+
+      const sortedGenres = Array.from(new Set(genres)).sort();
+      setSortedGenresData(sortedGenres);
+    }
   }, [current_path]);
 
   const selectedSongsTotalLengthInMinutes = () => {
@@ -206,7 +216,8 @@ function App() {
           <Col className="pt-5 bg-light song-table h-100">
             {current_path === '/albums' ? <AlbumsList sortedAlbumsData={sortedAlbumsData} /> : ''}
             {current_path === '/artists' ? <ArtistsList sortedArtistsData={sortedArtistsData} /> : ''}
-            {(current_path != '/albums') && (current_path != '/artists') ?
+            {current_path === '/genres' ? <GenresList sortedGenresData={sortedGenresData} /> : ''}
+            {(current_path != '/albums') && (current_path != '/artists') && (current_path != '/genres') ?
               <SongTable
                 songData={current_path === '/all' ? songData : filteredSongData}
                 setPlayerSongID={setPlayerSongID}
