@@ -15,7 +15,7 @@ export default function SearchForm({ setSearchResultData, setShowSearchResultMod
 
     const API_URL = process.env.REACT_APP_API_URL || 'https://spotunes-server.herokuapp.com';
     const url = new URL(`${API_URL}/api/spotify/search`);
-    const params = { title: query };
+    const params = { name: query, type: 'track' };
     url.search = new URLSearchParams(params).toString();
 
     const data = await (fetch(url))
