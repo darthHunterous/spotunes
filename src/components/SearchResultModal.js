@@ -8,8 +8,28 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 export default function SearchResultModal({ searchResultData, showSearchResultModal, setShowSearchResultModal, songData, setSongData }) {
-  const handleAddToLibrary = (searchResultItemIndex) => {
-    setSongData([...songData, { ...searchResultData[searchResultItemIndex], rating: 0 }]);
+  const handleAddToLibrary = async (searchResultItemIndex) => {
+    const selectedSong = searchResultData[searchResultItemIndex]
+
+    const API_URL = process.env.REACT_APP_API_URL || 'https://spotunes-server.herokuapp.com';
+    const url = new URL(`${API_URL}/api/spotify/search`);
+    const params = { name: selectedSong.artist, type: 'artist' };
+    url.search = new URLSearchParams(params).toString();
+
+    const data = await (fetch(url))
+      .then((response) => response.json())
+
+    const selectedArtist = data.filter(artistDetails => artistDetails.artistID === selectedSong.artistID)[0];
+    console.log(selectedArtist);
+    setSongData([
+      ...songData,
+      {
+        ...selectedSong,
+        rating: 0,
+        genres: selectedArtist.artistGenres,
+        artistImageURL: selectedArtist.artistImageURL,
+      }]);
+    console.log(songData);
   }
 
   return (
