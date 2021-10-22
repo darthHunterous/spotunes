@@ -135,7 +135,6 @@ function App() {
       currentAlbum.sort((a, b) => (a.title.toLowerCase() > b.title.toLowerCase()) ? 1
         : ((b.title.toLowerCase() > a.title.toLowerCase()) ? -1 : 0));
 
-      console.log(currentAlbum)
       setFilteredSongData(currentAlbum);
     }
     else if (current_path === '/artists') {
@@ -153,6 +152,15 @@ function App() {
       artists.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1
         : ((b.name.toLowerCase() > a.name.toLowerCase()) ? -1 : 0));
       setSortedArtistsData(artists);
+    }
+    else if (current_path.includes('/artists')) {
+      const artistID = params['id'];
+
+      const currentArtistSongs = songData.filter((song) => song.artistID === artistID)
+      currentArtistSongs.sort((a, b) => (a.title.toLowerCase() > b.title.toLowerCase()) ? 1
+        : ((b.title.toLowerCase() > a.title.toLowerCase()) ? -1 : 0));
+
+      setFilteredSongData(currentArtistSongs);
     }
   }, [current_path]);
 

@@ -18,6 +18,7 @@ export default function Routes() {
         <Route path="/recent" exact component={Home} />
         <Route path="/playlist/:id" exact component={Home} />
         <Route path="/albums/:id" exact component={Home} />
+        <Route path="/artists/:id" exact component={Home} />
       </Switch>
     </BrowserRouter>
   );
