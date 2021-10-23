@@ -227,7 +227,7 @@ function App() {
             {current_path === '/albums' ? <AlbumsList sortedAlbumsData={sortedAlbumsData} /> : ''}
             {current_path === '/artists' ? <ArtistsList sortedArtistsData={sortedArtistsData} /> : ''}
             {current_path === '/genres' ? <GenresList sortedGenresData={sortedGenresData} /> : ''}
-            {(current_path != '/albums') && (current_path != '/artists') && (current_path != '/genres') ?
+            {(current_path !== '/albums') && (current_path !== '/artists') && (current_path !== '/genres') ?
               <SongTable
                 songData={current_path === '/all' ? songData : filteredSongData}
                 setPlayerSongID={setPlayerSongID}
@@ -255,7 +255,26 @@ function App() {
       </Container>
 
       <Container fluid className="footer fixed-bottom d-flex align-items-center justify-content-center border-top border-dark border-2">
-        <p className="m-0">{filteredSongData.length} {filteredSongData.length === 1 ? 'song' : 'songs'} | {selectedSongsTotalLengthInMinutes()} minutes </p>
+        {(current_path === '/artists') ?
+          <p className="m-0">
+            {sortedArtistsData.length} {sortedArtistsData.length === 1 ? 'artist' : 'artists'}
+          </p>
+          : ''}
+        {(current_path === '/albums') ?
+          <p className="m-0">
+            {sortedAlbumsData.length} {sortedAlbumsData.length === 1 ? 'album' : 'albums'}
+          </p>
+          : ''}
+        {(current_path === '/genres') ?
+          <p className="m-0">
+            {sortedGenresData.length} {sortedGenresData.length === 1 ? 'genre' : 'genres'}
+          </p>
+          : ''}
+        {(current_path !== '/albums') && (current_path !== '/artists') && (current_path !== '/genres') ?
+          <p className="m-0">
+            {filteredSongData.length} {filteredSongData.length === 1 ? 'song' : 'songs'} | {selectedSongsTotalLengthInMinutes()} minutes
+          </p>
+          : ''}
       </Container>
 
       <SearchResultModal
