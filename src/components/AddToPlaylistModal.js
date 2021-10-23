@@ -18,7 +18,6 @@ export default function AddToPlaylistModal({ showAddToPlaylistModal, setShowAddT
   }
 
   const handleToggle = ({ target }) => {
-    console.log(playlists)
     setPlaylistChecked({
       ...playlistChecked,
       [target.name]: !playlistChecked[target.name]
