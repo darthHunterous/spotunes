@@ -20,14 +20,18 @@ export default function SearchResultModal({ searchResultData, showSearchResultMo
       .then((response) => response.json())
 
     const selectedArtist = data.filter(artistDetails => artistDetails.artistID === selectedSong.artistID)[0];
-    console.log(selectedArtist);
+
+    const dateNow = new Date().valueOf();
     setSongData([
       ...songData,
       {
         ...selectedSong,
-        rating: 0,
         genres: selectedArtist.artistGenres,
         artistImageURL: selectedArtist.artistImageURL,
+        rating: 0,
+        playCount: 0,
+        createdAt: dateNow,
+        modifiedAt: dateNow
       }]);
   }
 
