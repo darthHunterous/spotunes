@@ -146,7 +146,8 @@ function App() {
         if (!artists.some(artist => artist.id === song.artistID)) {
           artists.push({
             id: song.artistID,
-            name: song.artist
+            name: song.artist,
+            image: song.artistImageURL
           });
         }
       });

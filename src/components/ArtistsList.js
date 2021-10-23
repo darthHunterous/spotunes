@@ -15,6 +15,7 @@ export default function ArtistsList({ sortedArtistsData }) {
                     {sortedArtistsData.map((artist) => (
                         <Col className="col-md-2">
                             <Card className="my-3">
+                                <Card.Img variant="top" src={artist.image} />
                                 <Card.Body>
                                     <Card.Title>{artist.name}</Card.Title>
                                     <LinkContainer to={`/artists/${artist.id}`}>
