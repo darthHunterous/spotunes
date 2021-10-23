@@ -172,6 +172,15 @@ function App() {
       const sortedGenres = Array.from(new Set(genres)).sort();
       setSortedGenresData(sortedGenres);
     }
+    else if (current_path.includes('/genres')) {
+      const genre = params['identifier'].replace('-', ' ');
+
+      const currentGenreSongs = songData.filter((song) => song.genres.includes(genre))
+      currentGenreSongs.sort((a, b) => (a.title.toLowerCase() > b.title.toLowerCase()) ? 1
+        : ((b.title.toLowerCase() > a.title.toLowerCase()) ? -1 : 0));
+
+      setFilteredSongData(currentGenreSongs);
+    }
   }, [current_path]);
 
   const selectedSongsTotalLengthInMinutes = () => {
