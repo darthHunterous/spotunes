@@ -1,6 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-export default function SpotifyiFrame({ playerSongID }) {
+export default function SpotifyiFrame({ playerSongID, playerSongAsPlayed, setPlayerSongAsPlayed, songData, setSongData }) {
+  const [timerFlag, setTimerFlag] = useState(false);
+
+  const repeatedAction = () => {
+    const elem = document.activeElement;
+
+    if (elem && elem.tagName == 'IFRAME' && !playerSongAsPlayed) {
+      document.activeElement.blur();
+
+      const currentSongIndex = songData.findIndex((song) => song.spotifyID === playerSongID);
+      songData[currentSongIndex].playCount += 1;
+
+      setSongData([...songData]);
+
+      setPlayerSongAsPlayed(true);
+    }
+
+    setTimerFlag(!timerFlag);
+  }
+
+  useEffect(() => {
+    const monitor = setInterval(repeatedAction, 100);
+    return () => clearInterval(monitor);
+  }, [timerFlag]);
+
   return (
     <>
       {(playerSongID !== '')

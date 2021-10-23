@@ -5,7 +5,7 @@ import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 
 
-export default function SongTable({ songData, setPlayerSongID, setShowAddToPlaylistModal, setAddToPlaylistChosenSong }) {
+export default function SongTable({ songData, setPlayerSongID, setPlayerSongAsPlayed, setShowAddToPlaylistModal, setAddToPlaylistChosenSong }) {
   const addToPlaylist = (spotifyID) => {
     setAddToPlaylistChosenSong(songData.find(song => song.spotifyID === spotifyID));
     setShowAddToPlaylistModal(true);
@@ -29,7 +29,10 @@ export default function SongTable({ songData, setPlayerSongID, setShowAddToPlayl
             </thead >
             <tbody>
               {songData.map((song, index) => (
-                <tr onDoubleClick={() => setPlayerSongID(song.spotifyID)}>
+                <tr onDoubleClick={() => {
+                  setPlayerSongID(song.spotifyID);
+                  setPlayerSongAsPlayed(false);
+                }}>
                   <td>{index + 1}</td>
                   <td>{song.title}</td>
                   <td>{song.length_string}</td>

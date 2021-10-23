@@ -22,6 +22,7 @@ function App() {
   const [songData, setSongData] = useState([]);
   const [filteredSongData, setFilteredSongData] = useState([]);
   const [playerSongID, setPlayerSongID] = useState('');
+  const [playerSongAsPlayed, setPlayerSongAsPlayed] = useState(false);
   const [addToPlaylistChosenSong, setAddToPlaylistChosenSong] = useState('');
   const [searchResultData, setSearchResultData] = useState([]);
   const [showSearchResultModal, setShowSearchResultModal] = useState(false);
@@ -88,7 +89,7 @@ function App() {
   }
 
   useEffect(() => {
-    loadSongData()
+    loadSongData();
   }, [])
 
   useEffect(() => {
@@ -182,6 +183,14 @@ function App() {
 
       setFilteredSongData(currentGenreSongs);
     }
+    else if (current_path === '/recent') {
+      const currentDate = new Date();
+      const ONE_DAY = 24 * 60 * 60 * 1000;
+
+      const recentlyAddedSongs = songData.filter((song) => currentDate - song.createdAt < ONE_DAY);
+
+      setFilteredSongData(recentlyAddedSongs);
+    }
   }, [current_path]);
 
   const selectedSongsTotalLengthInMinutes = () => {
@@ -200,7 +209,13 @@ function App() {
             <MusicPlayerControls />
           </Col>
           <Col className="col-md-4 h-100 p-0">
-            <SpotifyiFrame playerSongID={playerSongID} />
+            <SpotifyiFrame
+              playerSongID={playerSongID}
+              playerSongAsPlayed={playerSongAsPlayed}
+              setPlayerSongAsPlayed={setPlayerSongAsPlayed}
+              songData={songData}
+              setSongData={setSongData}
+            />
           </Col>
           <Col className="col-md-4 h-100 p-0 d-flex justify-content-center align-items-center border-bottom border-dark border-2">
             <SearchForm setSearchResultData={setSearchResultData} setShowSearchResultModal={setShowSearchResultModal} />
@@ -231,6 +246,7 @@ function App() {
               <SongTable
                 songData={current_path === '/all' ? songData : filteredSongData}
                 setPlayerSongID={setPlayerSongID}
+                setPlayerSongAsPlayed={setPlayerSongAsPlayed}
                 setShowAddToPlaylistModal={setShowAddToPlaylistModal}
                 setAddToPlaylistChosenSong={setAddToPlaylistChosenSong}
               />
