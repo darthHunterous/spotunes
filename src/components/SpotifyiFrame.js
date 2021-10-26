@@ -6,7 +6,7 @@ export default function SpotifyiFrame({ playerSongID, playerSongAsPlayed, setPla
   const repeatedAction = () => {
     const elem = document.activeElement;
 
-    if (elem && elem.tagName == 'IFRAME' && !playerSongAsPlayed) {
+    if (elem && elem.tagName === 'IFRAME' && !playerSongAsPlayed) {
       document.activeElement.blur();
 
       const currentSongIndex = songData.findIndex((song) => song.spotifyID === playerSongID);
