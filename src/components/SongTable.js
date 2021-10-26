@@ -23,6 +23,7 @@ export default function SongTable({ songData, setPlayerSongID, setPlayerSongAsPl
                 <th>Length</th>
                 <th>Artist</th>
                 <th>Album</th>
+                <th>Plays</th>
                 <th className='text-center'>Rating</th>
                 <th className='text-center'>Add To Playlist</th>
               </tr>
@@ -38,6 +39,7 @@ export default function SongTable({ songData, setPlayerSongID, setPlayerSongAsPl
                   <td>{song.length_string}</td>
                   <td>{song.artist}</td>
                   <td>{song.album}</td>
+                  <td>{song.playCount}</td>
                   <td>{song.rating}</td>
                   <td className='d-flex justify-content-center'>
                     <Button key={song.spotifyID} onClick={() => addToPlaylist(song.spotifyID)} variant='success' size='sm'>Add to Playlist</Button>

@@ -105,11 +105,18 @@ function App() {
     if (current_path.includes('/playlist')) {
       const playlistID = params['id'];
 
-      const currentPlaylist = playlists.filter((playlist) => {
-        return playlist.id === playlistID;
-      });
-
-      setFilteredSongData(currentPlaylist[0].songs);
+      if (playlistID === '1') {
+        const currentPlaylist = songData.filter((song) => song.playCount > 0);
+        currentPlaylist.sort((a, b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0));
+        currentPlaylist.sort((a, b) => (a.playCount < b.playCount) ? 1 : ((b.playCount < a.playCount) ? -1 : 0));
+        setFilteredSongData(currentPlaylist.slice(0, 25));
+      }
+      else {
+        const currentPlaylist = playlists.filter((playlist) => {
+          return playlist.id === playlistID;
+        });
+        setFilteredSongData(currentPlaylist[0].songs);
+      }
     }
     else if (current_path === '/all') {
       setFilteredSongData(songData);
