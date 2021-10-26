@@ -261,14 +261,7 @@ function App() {
           </Col>
 
           <Col md="1" className="d-flex flex-column justify-content-between h-100 border-start border-dark border-2">
-            <div>
-              <ListGroupSection
-                title="Current Playlist"
-                items={['Song', 'Song', 'Song', 'Song', 'Song', 'Song']}
-                routes={['/song', '/song', '/song', '/song', '/song', '/song']}
-              />
-            </div>
-
+            <h5 className="mt-3 px-2">Placeholder</h5>
             <div>
               <h6>6 Músicas</h6>
               <h6>Duração: 38 min</h6>

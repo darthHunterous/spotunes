@@ -39,7 +39,7 @@ export default function ListGroupSection({ title, items, routes }) {
         onClick={handleClick}
       >
         {items.map((item, index) => (
-          <LinkContainer to={routes[index]}>
+          <LinkContainer key={item} to={routes[index]}>
             <ListGroup.Item
               action
               variant="dark"

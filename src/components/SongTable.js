@@ -30,7 +30,7 @@ export default function SongTable({ songData, setPlayerSongID, setPlayerSongAsPl
             </thead >
             <tbody>
               {songData.map((song, index) => (
-                <tr onDoubleClick={() => {
+                <tr key={song.spotifyID} onDoubleClick={() => {
                   setPlayerSongID(song.spotifyID);
                   setPlayerSongAsPlayed(false);
                 }}>

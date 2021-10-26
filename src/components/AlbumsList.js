@@ -13,7 +13,7 @@ export default function AlbumsList({ sortedAlbumsData }) {
             {sortedAlbumsData.length > 0 ?
                 <Row className="mx-4">
                     {sortedAlbumsData.map((album) => (
-                        <Col className="col-md-2">
+                        <Col key={album.id} className="col-md-2">
                             <Card className="my-3">
                                 <Card.Img variant="top" src={album.coverLink} />
                                 <Card.Body>

@@ -13,7 +13,7 @@ export default function ArtistsList({ sortedArtistsData }) {
             {sortedArtistsData.length > 0 ?
                 <Row className="mx-4">
                     {sortedArtistsData.map((artist) => (
-                        <Col className="col-md-2">
+                        <Col key={artist.id} className="col-md-2">
                             <Card className="my-3">
                                 <Card.Img variant="top" src={artist.image} />
                                 <Card.Body>

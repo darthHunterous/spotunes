@@ -81,7 +81,7 @@ export default function AddToPlaylistModal({ showAddToPlaylistModal, setShowAddT
         <ListGroup>
           <Form onSubmit={handleSubmit}>
             {playlists.filter(playlist => !playlist.isSmart).map(playlist =>
-            (<ListGroup.Item>
+            (<ListGroup.Item key={playlist.id}>
               <Form.Check
                 type='checkbox'
                 label={playlist.title}

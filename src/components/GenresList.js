@@ -20,7 +20,7 @@ export default function GenresList({ sortedGenresData }) {
             {sortedGenresData.length > 0 ?
                 <Row className="mx-4">
                     {sortedGenresData.map((genre) => (
-                        <Col className="col-md-2">
+                        <Col key={genre} className="col-md-2">
                             <Card className="my-3">
                                 <Card.Body>
                                     <Card.Title>{capitalizeString(genre)}</Card.Title>
