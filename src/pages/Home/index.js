@@ -119,6 +119,11 @@ function App() {
 
         setFilteredSongData(recentlyModifiedSongs);
       }
+      else if (playlistID === '4') {
+        const currentPlaylist = songData.filter((song) => song.playCount === 0);
+        currentPlaylist.sort((a, b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0));
+        setFilteredSongData(currentPlaylist);
+      }
       else {
         const currentPlaylist = playlists.filter((playlist) => {
           return playlist.id === playlistID;
