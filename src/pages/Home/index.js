@@ -111,6 +111,14 @@ function App() {
         currentPlaylist.sort((a, b) => (a.playCount < b.playCount) ? 1 : ((b.playCount < a.playCount) ? -1 : 0));
         setFilteredSongData(currentPlaylist.slice(0, 25));
       }
+      else if (playlistID === '3') {
+        const currentDate = new Date();
+        const ONE_DAY = 24 * 60 * 60 * 1000;
+
+        const recentlyModifiedSongs = songData.filter((song) => currentDate - song.modifiedAt < ONE_DAY);
+
+        setFilteredSongData(recentlyModifiedSongs);
+      }
       else {
         const currentPlaylist = playlists.filter((playlist) => {
           return playlist.id === playlistID;
