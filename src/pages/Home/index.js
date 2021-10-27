@@ -124,6 +124,14 @@ function App() {
         currentPlaylist.sort((a, b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0));
         setFilteredSongData(currentPlaylist);
       }
+      else if (playlistID === '5') {
+        const maxRating = songData.reduce((max, song) => max = max < song.rating ? song.rating : max, 0);
+
+        if (maxRating) {
+          const currentPlaylist = songData.filter((song) => song.rating === maxRating);
+          setFilteredSongData(currentPlaylist);
+        }
+      }
       else {
         const currentPlaylist = playlists.filter((playlist) => {
           return playlist.id === playlistID;
@@ -265,6 +273,7 @@ function App() {
             {(current_path !== '/albums') && (current_path !== '/artists') && (current_path !== '/genres') ?
               <SongTable
                 songData={current_path === '/all' ? songData : filteredSongData}
+                setSongData={setSongData}
                 setPlayerSongID={setPlayerSongID}
                 setPlayerSongAsPlayed={setPlayerSongAsPlayed}
                 setShowAddToPlaylistModal={setShowAddToPlaylistModal}

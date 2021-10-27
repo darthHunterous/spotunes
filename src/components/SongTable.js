@@ -2,14 +2,16 @@ import React from 'react';
 
 import Table from 'react-bootstrap/Table';
 import Alert from 'react-bootstrap/Alert';
-import Button from 'react-bootstrap/Button';
 
+import SongTableRow from './SongTableRow';
 
-export default function SongTable({ songData, setPlayerSongID, setPlayerSongAsPlayed, setShowAddToPlaylistModal, setAddToPlaylistChosenSong }) {
-  const addToPlaylist = (spotifyID) => {
-    setAddToPlaylistChosenSong(songData.find(song => song.spotifyID === spotifyID));
-    setShowAddToPlaylistModal(true);
-  }
+export default function SongTable(
+  { songData,
+    setSongData,
+    setPlayerSongID,
+    setPlayerSongAsPlayed,
+    setShowAddToPlaylistModal,
+    setAddToPlaylistChosenSong }) {
 
   return (
     <>
@@ -30,21 +32,17 @@ export default function SongTable({ songData, setPlayerSongID, setPlayerSongAsPl
             </thead >
             <tbody>
               {songData.map((song, index) => (
-                <tr key={song.spotifyID} onDoubleClick={() => {
-                  setPlayerSongID(song.spotifyID);
-                  setPlayerSongAsPlayed(false);
-                }}>
-                  <td>{index + 1}</td>
-                  <td>{song.title}</td>
-                  <td>{song.length_string}</td>
-                  <td>{song.artist}</td>
-                  <td>{song.album}</td>
-                  <td>{song.playCount}</td>
-                  <td>{song.rating}</td>
-                  <td className='d-flex justify-content-center'>
-                    <Button key={song.spotifyID} onClick={() => addToPlaylist(song.spotifyID)} variant='success' size='sm'>Add to Playlist</Button>
-                  </td>
-                </tr>
+                <SongTableRow
+                  song={song}
+                  index={index}
+                  spotifyID={song.spotifyID}
+                  songData={songData}
+                  setSongData={setSongData}
+                  setPlayerSongID={setPlayerSongID}
+                  setPlayerSongAsPlayed={setPlayerSongAsPlayed}
+                  setShowAddToPlaylistModal={setShowAddToPlaylistModal}
+                  setAddToPlaylistChosenSong={setAddToPlaylistChosenSong}
+                />
               ))}
             </tbody>
           </Table >
