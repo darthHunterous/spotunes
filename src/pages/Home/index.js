@@ -258,6 +258,8 @@ function App() {
               title="Library"
               items={['All Songs', 'Artists', 'Albums', 'Genres', 'Recently Added']}
               routes={['/all', '/artists', '/albums', '/genres', '/recent']}
+              songData={songData}
+              setSongData={setSongData}
             />
             <ListGroupSection
               title="Playlists"
