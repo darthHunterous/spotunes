@@ -36,6 +36,11 @@ body,
   overflow: scroll;
 }
 
+.sidebar {
+  height: 89vh;
+  overflow: scroll;
+}
+
 td {
   cursor: pointer;
 }

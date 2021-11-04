@@ -253,18 +253,23 @@ function App() {
 
       <Container fluid className="main-content">
         <Row className="h-100">
-          <Col md="1" className="h-100 border-end border-dark border-2">
+          <Col md="1" className="h-100 border-end border-dark border-2 sidebar">
             <ListGroupSection
               title="Library"
               items={['All Songs', 'Artists', 'Albums', 'Genres', 'Recently Added']}
               routes={['/all', '/artists', '/albums', '/genres', '/recent']}
               songData={songData}
               setSongData={setSongData}
+              playlists={playlists}
             />
             <ListGroupSection
               title="Playlists"
-              items={initial_playlists.map((playlist) => playlist.title)}
-              routes={initial_playlists.map((playlist) => `/playlist/${playlist.id}`)}
+              items={playlists.map((playlist) => playlist.title)}
+              routes={playlists.map((playlist) => `/playlist/${playlist.id}`)}
+              songData={songData}
+              setSongData={setSongData}
+              playlists={playlists}
+              setPlaylists={setPlaylists}
             />
           </Col>
 
