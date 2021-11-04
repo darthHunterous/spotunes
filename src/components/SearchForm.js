@@ -29,7 +29,7 @@ export default function SearchForm({ setSearchResultData, setShowSearchResultMod
     <Form className="d-flex w-50" onSubmit={handleSearch}>
       <FormControl
         type="search"
-        placeholder="Search"
+        placeholder="Add new song..."
         className="mr-2 shadow-none"
         aria-label="Search"
         name="searchQuery"
