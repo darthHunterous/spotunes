@@ -280,6 +280,8 @@ function App() {
             {(current_path !== '/albums') && (current_path !== '/artists') && (current_path !== '/genres') ?
               <SongTable
                 songData={current_path === '/all' ? songData : filteredSongData}
+                playlists={playlists}
+                setPlaylists={setPlaylists}
                 setSongData={setSongData}
                 setPlayerSongID={setPlayerSongID}
                 setPlayerSongAsPlayed={setPlayerSongAsPlayed}

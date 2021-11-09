@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import uuid from 'react-uuid';
 
 import Modal from 'react-bootstrap/Modal';
