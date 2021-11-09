@@ -13,7 +13,7 @@ export default function PlaylistEditFormModal({ showPlaylistEditFormModal, setSh
 
   useEffect(() => {
     setCurrentPlaylistTitle(currentPlaylist?.title);
-  }, []);
+  }, [currentPlaylist]);
 
   const handleSubmit = (event) => {
     event.preventDefault();

@@ -257,6 +257,7 @@ function App() {
             <ListGroupSection
               title="Library"
               items={['All Songs', 'Artists', 'Albums', 'Genres', 'Recently Added']}
+              keys={['/all', '/artists', '/albums', '/genres', '/recent']}
               routes={['/all', '/artists', '/albums', '/genres', '/recent']}
               songData={songData}
               setSongData={setSongData}
@@ -265,6 +266,7 @@ function App() {
             <ListGroupSection
               title="Playlists"
               items={playlists.map((playlist) => playlist.title)}
+              keys={playlists.map((playlist) => playlist.id)}
               routes={playlists.map((playlist) => `/playlist/${playlist.id}`)}
               songData={songData}
               setSongData={setSongData}

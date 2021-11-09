@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 
 import PlaylistCreationFormModal from './PlaylistCreationFormModal';
 
-export default function ListGroupSection({ title, items, routes, songData, setSongData, playlists, setPlaylists }) {
+export default function ListGroupSection({ title, items, keys, routes, songData, setSongData, playlists, setPlaylists }) {
   const inputRef = useRef(null);
   const [showPlaylistCreationFormModal, setShowPlaylistCreationFormModal] = useState(false);
 
@@ -111,7 +111,7 @@ export default function ListGroupSection({ title, items, routes, songData, setSo
         onClick={handleClick}
       >
         {items.map((item, index) => (
-          <LinkContainer key={item} to={routes[index]}>
+          <LinkContainer key={keys[index]} to={routes[index]}>
             <ListGroup.Item
               action
               variant="dark"
