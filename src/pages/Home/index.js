@@ -233,8 +233,11 @@ function App() {
     <>
       <Container className="navbar-player p-0" fluid>
         <Row className="h-100 w-100 m-0">
-          <Col className="col-md-4 h-100 p-0 d-flex justify-content-evenly border-bottom border-dark border-2">
-            <MusicPlayerControls />
+          <Col className="col-md-4 h-100 p-0 d-flex justify-content-center border-bottom border-dark border-2">
+            <MusicPlayerControls
+              playerSongID={playerSongID}
+              setPlayerSongID={setPlayerSongID}
+            />
           </Col>
           <Col className="col-md-4 h-100 p-0">
             <SpotifyiFrame

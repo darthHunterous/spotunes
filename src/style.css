@@ -48,3 +48,8 @@ td {
 th {
   cursor: default;
 }
+
+.player > svg:hover {
+  background-color: rgb(190, 190, 191);
+  cursor: pointer;
+}
