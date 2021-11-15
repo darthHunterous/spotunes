@@ -93,7 +93,8 @@ function App() {
   }, [])
 
   useEffect(() => {
-    localStorage.setItem('songData', JSON.stringify(songData))
+    localStorage.setItem('songData', JSON.stringify(songData));
+    setFilteredSongData(songData);
   }, [songData]);
 
   let current_path = useLocation().pathname;
@@ -237,6 +238,7 @@ function App() {
             <MusicPlayerControls
               playerSongID={playerSongID}
               setPlayerSongID={setPlayerSongID}
+              filteredSongData={filteredSongData}
             />
           </Col>
           <Col className="col-md-4 h-100 p-0">
@@ -288,6 +290,7 @@ function App() {
                 playlists={playlists}
                 setPlaylists={setPlaylists}
                 setSongData={setSongData}
+                playerSongID={playerSongID}
                 setPlayerSongID={setPlayerSongID}
                 setPlayerSongAsPlayed={setPlayerSongAsPlayed}
                 setShowAddToPlaylistModal={setShowAddToPlaylistModal}

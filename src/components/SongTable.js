@@ -13,6 +13,7 @@ export default function SongTable(
     playlists,
     setPlaylists,
     setSongData,
+    playerSongID,
     setPlayerSongID,
     setPlayerSongAsPlayed,
     setShowAddToPlaylistModal,
@@ -84,6 +85,7 @@ export default function SongTable(
                   spotifyID={song.spotifyID}
                   songData={songData}
                   setSongData={setSongData}
+                  playerSongID={playerSongID}
                   setPlayerSongID={setPlayerSongID}
                   setPlayerSongAsPlayed={setPlayerSongAsPlayed}
                   setShowAddToPlaylistModal={setShowAddToPlaylistModal}

@@ -53,3 +53,7 @@ th {
   background-color: rgb(190, 190, 191);
   cursor: pointer;
 }
+
+iframe {
+  user-select: none;
+}

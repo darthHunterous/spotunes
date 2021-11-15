@@ -9,6 +9,7 @@ export default function SongTableRow(
     spotifyID,
     songData,
     setSongData,
+    playerSongID,
     setPlayerSongID,
     setPlayerSongAsPlayed,
     setShowAddToPlaylistModal,
@@ -28,11 +29,18 @@ export default function SongTableRow(
   };
 
   return (
-    <tr className="align-middle" key={song.spotifyID} onDoubleClick={() => {
-      setPlayerSongID(song.spotifyID);
-      setPlayerSongAsPlayed(false);
-    }}>
-      <td>{index + 1}</td>
+    <tr
+      className="align-middle" key={song.spotifyID} onDoubleClick={() => {
+        setPlayerSongID(song.spotifyID);
+        setPlayerSongAsPlayed(false);
+      }
+      }>
+      <td>
+        {index + 1}
+        {spotifyID === playerSongID ?
+          <span className="badge bg-success ms-3 me-0">Active</span>
+          : ''}
+      </td>
       <td>{song.title}</td>
       <td>{song.length_string}</td>
       <td>{song.artist}</td>
@@ -51,6 +59,6 @@ export default function SongTableRow(
       <td className="text-center">
         <Button key={song.spotifyID} onClick={() => addToPlaylist(song.spotifyID)} variant='success' size='sm'>Add to Playlist</Button>
       </td>
-    </tr>
+    </tr >
   )
 }
