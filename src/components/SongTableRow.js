@@ -28,6 +28,10 @@ export default function SongTableRow(
     setSongData([...songData]);
   };
 
+  function handlePlayButton() {
+    setPlayerSongID(spotifyID);
+  }
+
   return (
     <tr
       className="align-middle" key={song.spotifyID} onDoubleClick={() => {
@@ -36,10 +40,11 @@ export default function SongTableRow(
       }
       }>
       <td>
-        {index + 1}
-        {spotifyID === playerSongID ?
-          <span className="badge bg-success ms-3 me-0">Active</span>
-          : ''}
+        <span>{index + 1}</span>
+        {spotifyID === playerSongID
+          ? <span className="badge bg-success">Active</span>
+          : <span className="badge bg-primary cursor-pointer" onClick={() => handlePlayButton()}>Play</span>
+        }
       </td>
       <td>{song.title}</td>
       <td>{song.length_string}</td>

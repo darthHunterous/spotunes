@@ -42,7 +42,7 @@ body,
 }
 
 td {
-  cursor: pointer;
+  cursor: default;
 }
 
 th {
@@ -56,4 +56,12 @@ th {
 
 iframe {
   user-select: none;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.badge {
+  float: right;
 }
