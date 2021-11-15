@@ -220,6 +220,7 @@ function App() {
 
       setFilteredSongData(recentlyAddedSongs);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [current_path]);
 
   const selectedSongsTotalLengthInMinutes = () => {
