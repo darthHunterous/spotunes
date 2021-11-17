@@ -33,12 +33,12 @@ body,
 .song-table {
   height: 89vh;
   /* width: calc(10 / 12) * 100vw; */
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .sidebar {
   height: 89vh;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 td {
