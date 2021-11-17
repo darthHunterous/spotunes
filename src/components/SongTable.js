@@ -15,6 +15,8 @@ export default function SongTable(
     setSongData,
     playerSongID,
     setPlayerSongID,
+    showInfoSong,
+    setShowInfoSong,
     setPlayerSongAsPlayed,
     setShowAddToPlaylistModal,
     setAddToPlaylistChosenSong }) {
@@ -87,6 +89,8 @@ export default function SongTable(
                   setSongData={setSongData}
                   playerSongID={playerSongID}
                   setPlayerSongID={setPlayerSongID}
+                  showInfoSong={showInfoSong}
+                  setShowInfoSong={setShowInfoSong}
                   setPlayerSongAsPlayed={setPlayerSongAsPlayed}
                   setShowAddToPlaylistModal={setShowAddToPlaylistModal}
                   setAddToPlaylistChosenSong={setAddToPlaylistChosenSong}

@@ -11,6 +11,8 @@ export default function SongTableRow(
     setSongData,
     playerSongID,
     setPlayerSongID,
+    showInfoSong,
+    setShowInfoSong,
     setPlayerSongAsPlayed,
     setShowAddToPlaylistModal,
     setAddToPlaylistChosenSong
@@ -32,6 +34,11 @@ export default function SongTableRow(
     setPlayerSongID(spotifyID);
   }
 
+  function handleShowButton() {
+    const song = songData.find(song => song.spotifyID === spotifyID);
+    setShowInfoSong(song);
+  }
+
   return (
     <tr
       className="align-middle" key={song.spotifyID} onDoubleClick={() => {
@@ -41,6 +48,7 @@ export default function SongTableRow(
       }>
       <td>
         <span>{index + 1}</span>
+        <span className="badge bg-secondary ms-2 cursor-pointer" onClick={() => handleShowButton()}>Show</span>
         {spotifyID === playerSongID
           ? <span className="badge bg-success">Active</span>
           : <span className="badge bg-primary cursor-pointer" onClick={() => handlePlayButton()}>Play</span>
