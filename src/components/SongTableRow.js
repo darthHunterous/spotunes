@@ -18,11 +18,6 @@ export default function SongTableRow(
     setAddToPlaylistChosenSong
   }) {
 
-  const addToPlaylist = (spotifyID) => {
-    setAddToPlaylistChosenSong(songData.find(song => song.spotifyID === spotifyID));
-    setShowAddToPlaylistModal(true);
-  }
-
   const ratingChanged = (newRating) => {
     const currentSongIndex = songData.findIndex((song) => song.spotifyID === spotifyID);
     songData[currentSongIndex].rating = newRating;
@@ -68,9 +63,6 @@ export default function SongTableRow(
           activeColor="#ffd700"
           value={song.rating}
         />
-      </td>
-      <td className="text-center">
-        <Button key={song.spotifyID} onClick={() => addToPlaylist(song.spotifyID)} variant='success' size='sm'>Add to Playlist</Button>
       </td>
     </tr >
   )

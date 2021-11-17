@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 
-export default function SongInfoSidebar({ showInfoSong }) {
+export default function SongInfoSidebar({ showInfoSong, songData, setAddToPlaylistChosenSong, setShowAddToPlaylistModal }) {
   function formatDateString(dateMilliseconds) {
     const date = new Date(dateMilliseconds);
 
@@ -19,6 +19,11 @@ export default function SongInfoSidebar({ showInfoSong }) {
     return `${yyyy}/${mm}/${dd} ${hh}:${min}`;
   }
 
+  function addToPlaylist(spotifyID) {
+    setAddToPlaylistChosenSong(songData.find(song => song.spotifyID === spotifyID));
+    setShowAddToPlaylistModal(true);
+  }
+
   return (
     <>
       <h5 className="mt-3 px-2 mb-3">Current Song:</h5>
@@ -29,7 +34,7 @@ export default function SongInfoSidebar({ showInfoSong }) {
               <Card.Body className="p-0">
                 <ListGroup variant="flush">
                   <ListGroup.Item>
-                    <Button variant="success" size="sm" className="w-100">
+                    <Button variant="success" size="sm" className="w-100" onClick={() => addToPlaylist(showInfoSong.spotifyID)}>
                       + Playlist
                     </Button>
                   </ListGroup.Item>

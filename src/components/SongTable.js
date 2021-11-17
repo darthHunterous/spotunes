@@ -76,7 +76,6 @@ export default function SongTable(
                 <th>Album</th>
                 <th>Plays</th>
                 <th className='text-center'>Rating</th>
-                <th className='text-center'>Add To Playlist</th>
               </tr>
             </thead >
             <tbody>
