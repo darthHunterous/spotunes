@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-export default function MusicPlayerControls({ playerSongID, setPlayerSongID, filteredSongData }) {
+export default function MusicPlayerControls({ playerSongID, setPlayerSongID, filteredSongData, currentSongIndex, setCurrentSongIndex }) {
   const SIZE = 48;
-  const [currentSongIndex, setCurrentSongIndex] = useState(-1);
-
   let current_path = useLocation().pathname;
 
   useEffect(() => {

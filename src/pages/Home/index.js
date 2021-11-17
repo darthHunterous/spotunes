@@ -32,6 +32,7 @@ function App() {
   const [sortedArtistsData, setSortedArtistsData] = useState([]);
   const [sortedGenresData, setSortedGenresData] = useState([]);
   const [showInfoSong, setShowInfoSong] = useState({});
+  const [currentSongIndex, setCurrentSongIndex] = useState(-1);
 
   const initial_playlists = [
     {
@@ -242,6 +243,8 @@ function App() {
               playerSongID={playerSongID}
               setPlayerSongID={setPlayerSongID}
               filteredSongData={filteredSongData}
+              currentSongIndex={currentSongIndex}
+              setCurrentSongIndex={setCurrentSongIndex}
             />
           </Col>
           <Col className="col-md-4 h-100 p-0">
@@ -295,11 +298,9 @@ function App() {
                 setSongData={setSongData}
                 playerSongID={playerSongID}
                 setPlayerSongID={setPlayerSongID}
-                showInfoSong={showInfoSong}
                 setShowInfoSong={setShowInfoSong}
                 setPlayerSongAsPlayed={setPlayerSongAsPlayed}
-                setShowAddToPlaylistModal={setShowAddToPlaylistModal}
-                setAddToPlaylistChosenSong={setAddToPlaylistChosenSong}
+                setCurrentSongIndex={setCurrentSongIndex}
               />
               : ''}
           </Col>

@@ -15,11 +15,10 @@ export default function SongTable(
     setSongData,
     playerSongID,
     setPlayerSongID,
-    showInfoSong,
     setShowInfoSong,
     setPlayerSongAsPlayed,
-    setShowAddToPlaylistModal,
-    setAddToPlaylistChosenSong }) {
+    setCurrentSongIndex,
+  }) {
 
   const params = useParams();
   const history = useHistory();
@@ -88,11 +87,9 @@ export default function SongTable(
                   setSongData={setSongData}
                   playerSongID={playerSongID}
                   setPlayerSongID={setPlayerSongID}
-                  showInfoSong={showInfoSong}
                   setShowInfoSong={setShowInfoSong}
                   setPlayerSongAsPlayed={setPlayerSongAsPlayed}
-                  setShowAddToPlaylistModal={setShowAddToPlaylistModal}
-                  setAddToPlaylistChosenSong={setAddToPlaylistChosenSong}
+                  setCurrentSongIndex={setCurrentSongIndex}
                 />
               ))}
             </tbody>

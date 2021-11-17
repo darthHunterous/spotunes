@@ -9,11 +9,9 @@ export default function SongTableRow(
     setSongData,
     playerSongID,
     setPlayerSongID,
-    showInfoSong,
     setShowInfoSong,
     setPlayerSongAsPlayed,
-    setShowAddToPlaylistModal,
-    setAddToPlaylistChosenSong
+    setCurrentSongIndex
   }) {
 
   const ratingChanged = (newRating) => {
@@ -25,6 +23,7 @@ export default function SongTableRow(
 
   function handlePlayButton() {
     setPlayerSongID(spotifyID);
+    setCurrentSongIndex(index);
     setPlayerSongAsPlayed(false);
   }
 
