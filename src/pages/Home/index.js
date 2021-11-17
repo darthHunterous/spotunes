@@ -307,7 +307,9 @@ function App() {
           <Col md="1" className="d-flex flex-column h-100 border-start border-dark border-2 sidebar">
             <SongInfoSidebar
               showInfoSong={showInfoSong}
+              setShowInfoSong={setShowInfoSong}
               songData={songData}
+              setSongData={setSongData}
               setAddToPlaylistChosenSong={setAddToPlaylistChosenSong}
               setShowAddToPlaylistModal={setShowAddToPlaylistModal}
             />
