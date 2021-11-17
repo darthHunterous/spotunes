@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactStars from "react-rating-stars-component";
 
-import Button from 'react-bootstrap/Button';
-
 export default function SongTableRow(
   { song,
     index,
@@ -27,6 +25,7 @@ export default function SongTableRow(
 
   function handlePlayButton() {
     setPlayerSongID(spotifyID);
+    setPlayerSongAsPlayed(false);
   }
 
   function handleShowButton() {
@@ -35,12 +34,7 @@ export default function SongTableRow(
   }
 
   return (
-    <tr
-      className="align-middle" key={song.spotifyID} onDoubleClick={() => {
-        setPlayerSongID(song.spotifyID);
-        setPlayerSongAsPlayed(false);
-      }
-      }>
+    <tr className="align-middle" key={song.spotifyID}>
       <td>
         <span>{index + 1}</span>
         <span className="badge bg-secondary ms-2 cursor-pointer" onClick={() => handleShowButton()}>Show</span>
