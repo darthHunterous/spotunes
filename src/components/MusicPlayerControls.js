@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-export default function MusicPlayerControls({ playerSongID, setPlayerSongID, filteredSongData, currentSongIndex, setCurrentSongIndex }) {
+export default function MusicPlayerControls({ playerSongID, setPlayerSongID, filteredSongData, currentSongIndex, setCurrentSongIndex, setPlayerSongAsPlayed }) {
   const SIZE = 48;
   let current_path = useLocation().pathname;
 
@@ -25,6 +25,7 @@ export default function MusicPlayerControls({ playerSongID, setPlayerSongID, fil
 
     setPlayerSongID(filteredSongData[nextIndex].spotifyID);
     setCurrentSongIndex(nextIndex);
+    setPlayerSongAsPlayed(false);
   }
 
   function handleSkipForward() {
@@ -36,6 +37,7 @@ export default function MusicPlayerControls({ playerSongID, setPlayerSongID, fil
 
     setPlayerSongID(filteredSongData[nextIndex].spotifyID);
     setCurrentSongIndex(nextIndex);
+    setPlayerSongAsPlayed(false);
   }
 
   return (
