@@ -28,7 +28,7 @@ export default function ArtistsList({ sortedArtistsData }) {
                 </Row>
                 :
                 <Alert variant='warning'>
-                    No albums here yet. Please add some songs to start having fun with Spotunes!
+                    No artists here yet. Please add some songs to start having fun with Spotunes!
                 </Alert>}
         </>
     )
