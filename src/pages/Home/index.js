@@ -18,6 +18,7 @@ import AlbumsList from "../../components/AlbumsList";
 import ArtistsList from "../../components/ArtistsList";
 import GenresList from "../../components/GenresList";
 import SongInfoSidebar from "../../components/SongInfoSidebar";
+import FooterStats from "../../components/FooterStats";
 
 function App() {
   const [songData, setSongData] = useState([]);
@@ -226,14 +227,6 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [current_path]);
 
-  const selectedSongsTotalLengthInMinutes = () => {
-    const totalMilliseconds = filteredSongData.reduce((sum, song) => {
-      return sum + song.length_ms;
-    }, 0)
-
-    return (totalMilliseconds / 60000).toFixed(1);
-  }
-
   return (
     <>
       <Container className="navbar-player p-0" fluid>
@@ -319,26 +312,12 @@ function App() {
       </Container>
 
       <Container fluid className="footer fixed-bottom d-flex align-items-center justify-content-center border-top border-dark border-2">
-        {(current_path === '/artists') ?
-          <p className="m-0">
-            {sortedArtistsData.length} {sortedArtistsData.length === 1 ? 'artist' : 'artists'}
-          </p>
-          : ''}
-        {(current_path === '/albums') ?
-          <p className="m-0">
-            {sortedAlbumsData.length} {sortedAlbumsData.length === 1 ? 'album' : 'albums'}
-          </p>
-          : ''}
-        {(current_path === '/genres') ?
-          <p className="m-0">
-            {sortedGenresData.length} {sortedGenresData.length === 1 ? 'genre' : 'genres'}
-          </p>
-          : ''}
-        {(current_path !== '/albums') && (current_path !== '/artists') && (current_path !== '/genres') ?
-          <p className="m-0">
-            {filteredSongData.length} {filteredSongData.length === 1 ? 'song' : 'songs'} | {selectedSongsTotalLengthInMinutes()} minutes
-          </p>
-          : ''}
+        <FooterStats
+          sortedArtistsData={sortedArtistsData}
+          sortedAlbumsData={sortedAlbumsData}
+          sortedGenresData={sortedGenresData}
+          filteredSongData={filteredSongData}
+        />
       </Container>
 
       <SearchResultModal
