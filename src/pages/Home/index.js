@@ -9,7 +9,7 @@ import Col from 'react-bootstrap/Col';
 
 import SongTable from '../../components/SongTable';
 import SpotifyiFrame from '../../components/SpotifyiFrame';
-import ListGroupSection from '../../components/ListGroupSection';
+import LeftSidebar from '../../components/LeftSidebar';
 import MusicPlayerControls from '../../components/MusicPlayerControls';
 import SearchForm from '../../components/SearchForm';
 import SearchResultModal from "../../components/SearchResultModal";
@@ -258,23 +258,10 @@ function App() {
       <Container fluid className="main-content">
         <Row className="h-100">
           <Col md="1" className="h-100 border-end border-dark border-2 sidebar">
-            <ListGroupSection
-              title="Library"
-              items={['All Songs', 'Artists', 'Albums', 'Genres', 'Recently Added']}
-              keys={['/all', '/artists', '/albums', '/genres', '/recent']}
-              routes={['/all', '/artists', '/albums', '/genres', '/recent']}
+            <LeftSidebar
+              playlists={playlists}
               songData={songData}
               setSongData={setSongData}
-              playlists={playlists}
-            />
-            <ListGroupSection
-              title="Playlists"
-              items={playlists.map((playlist) => playlist.title)}
-              keys={playlists.map((playlist) => playlist.id)}
-              routes={playlists.map((playlist) => `/playlist/${playlist.id}`)}
-              songData={songData}
-              setSongData={setSongData}
-              playlists={playlists}
               setPlaylists={setPlaylists}
             />
           </Col>
