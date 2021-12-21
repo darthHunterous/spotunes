@@ -9,8 +9,8 @@ O ambiente estará disponível em http://localhost:3000/
 
 # Build e deploy
 
-O repositório já está pronto para o deploy em sua branch `master`, basta escolher a plataforma de sua escolha (Heroku, Vercel, Netlify, etc) e seguir as instruções nestes sites.
+O repositório já está pronto para o deploy em sua branch `main`, basta escolher a plataforma de sua escolha (Heroku, Vercel, Netlify, etc) e seguir as instruções nestes sites.
 
 # Instância já deployada
 
-Uma instância rodando sempre a `master` atualizada já está deployada no Netlify e pode ser encontrada em https://spotunes.netlify.app
+Uma instância rodando sempre a `main` atualizada já está deployada no Netlify e pode ser encontrada em https://spotunes.netlify.app
